@@ -1,4 +1,8 @@
 class CarsController < ApplicationController
+  def index
+    @cars = Car.all
+  end
+
   def new
     @car = Car.new
   end
@@ -11,6 +15,10 @@ class CarsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @car = Car.find(params[:id])
   end
 
   private
