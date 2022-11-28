@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+
   devise_for :users
+  get 'users/show'
   root to: "pages#home"
 
   resources :cars do
     resources :rentals, only: [:new, :create]
   end
+
   resources :rentals, except: [:new, :create]
 
   resources :rentals do
