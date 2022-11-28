@@ -1,14 +1,19 @@
+
 <h1>Show page</h1>
-
-
-<img style="width: 100px; height: 100px;"src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg" alt="">
-<h3><%= @user.first_name %></h3>
-<h3><%= @user.last_name %></h3>
-
-
-
+<div class="container marketing">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 mt-5">
+    <img style="width: 100px; height: 100px;"src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg" alt="">
+    <div class="d-flex">
+      <h3 class="me-2"><%= @user.first_name %></h3>
+      <h3><%= @user.last_name %></h3>
+    </div>
+    <hr>
+    <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-primary mt-3" %>
+    <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger mt-3" %>
+    </div>
+  </div>
+</div>
 
 
 <%# delete, edit options %>
-
-<%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger" %>
