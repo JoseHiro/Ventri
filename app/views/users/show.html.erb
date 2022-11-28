@@ -1,0 +1,14 @@
+<h1>Show page</h1>
+
+
+<img style="width: 100px; height: 100px;"src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg" alt="">
+<h3><%= @user.first_name %></h3>
+<h3><%= @user.last_name %></h3>
+
+
+
+
+
+<%# delete, edit options %>
+
+<%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger" %>
