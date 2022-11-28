@@ -1,0 +1,21 @@
+<h1>Booked cars of a user</h1>
+<div class="container d-flex">
+<div class="card p-3 border">
+<%@booked_cars.each do |rental|%>
+<h5>Car information:</h5>
+<p>Category:<%= rental.car.category %></p>
+<p>Model:<%= rental.car.model %></p>
+<p>Brand:<%= rental.car.brand %></p>
+<p>Year:<%= rental.car.year %></p>
+<p>Color:<%= rental.car.color %></p>
+<p>Number of seats:<%= rental.car.number_of_seats%></p>
+<p>Number of door:<%= rental.car.number_of_doors%></p>
+<p>Engine Size:<%= rental.car.engine_size%></p>
+<p>Start milage:<%= rental.start_milage %></p>
+<p>End milage: <%= rental.end_milage %></p>
+<p>Start rental day: <%= rental.start_date %></p>
+<p>End rental day: <%= rental.end_date %></p>
+<p>Rented to: <%= rental.car.owner.email %></p>
+</div>
+<% end %>
+</div>
