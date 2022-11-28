@@ -1,18 +1,20 @@
 <h1>Cars available to you</h1>
 <%=@cars.each do |car| %>
+  <% if car.owner != current_user %>
     <div class="card-product">
     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
     <div class="card-product-infos">
       <h2><%car.owner.name%>'s <%=car.brand%> <%=car.model%></h2>
-      <p>Year of manufactureL <%=car.year%></p>
+      <p>Year of manufacture <%=car.year%></p>
       <p>Color: <%=car.color%></p>
       <p>Number of seats: <%=car.number_of_seats%></p>
       <p>Number of doors: <%=car.number_of_doors%></p>
       <p>Engine Size (L): <%=car.engine_size%></p>
       <p>Product description with <strong>relevant info</strong> only.</p>
       <div>
-
+        <p></p>
       </div>
     </div>
+  <% end %>
   <%end%>
 </div>
