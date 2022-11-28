@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :cars do
     resources :rentals, only: [:new, :create]
   end
+  resources :rentals, except: [:new, :create, :index]
 
-  resources :rentals, except: [:new, :create]
+  get "my_bookings", to: "rentals#booked_cars"
+  get "my_rented_cars", to: "rentals#rented_cars"
 
   resources :rentals do
     resources :reviews
