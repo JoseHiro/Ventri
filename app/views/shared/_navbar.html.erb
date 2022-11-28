@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
       <h1 style="font-weight:bold; color:red;">Ventri🎄</h1>
-      <h2>Join us</h2>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,9 +25,12 @@
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/No_icon_red.svg/1164px-No_icon_red.svg.png?20140313221731", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Edit password", edit_user_password_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to "Edit user information", edit_user_password_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to "My page", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
