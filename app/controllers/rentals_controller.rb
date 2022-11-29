@@ -12,6 +12,10 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
   end
 
+  def show_owner_rental
+    @rental = Rental.find(params[:id])
+  end
+
   def new
     @rental = Rental.new
     @car = Car.find(params[:car_id])
@@ -46,6 +50,13 @@ class RentalsController < ApplicationController
   end
 
   def update
+    @rental = Rental.find(params[:id])
+    @rental.update(new_car_params)
+    if current_user == @rental.car.owner
+      redirect_to show_owner_rental_path(@rental)
+    else
+      redirect_to show show_booked_rental_path(@rental)
+    end
   end
 
   def destroy
