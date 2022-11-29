@@ -51,15 +51,20 @@ class RentalsController < ApplicationController
 
   def update
     @rental = Rental.find(params[:id])
-    @rental.update(new_car_params)
-    if current_user == @rental.car.owner
-      redirect_to show_owner_rental_path(@rental)
+    if @rental.update(new_car_params)
+      if current_user == @rental.car.owner
+        redirect_to show_owner_rental_path(@rental)
+      else
+        redirect_to show_booked_rental_path(@rental)
+      end
     else
-      redirect_to show show_booked_rental_path(@rental)
+      render :show_owner_rental, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
   end
 
   private
