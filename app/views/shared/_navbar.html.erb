@@ -22,6 +22,7 @@
               <%= link_to "My page", users_show_path(current_user), class: "dropdown-item" %>
               <%= link_to "Edit user information", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>

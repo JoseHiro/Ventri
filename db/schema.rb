@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_211210) do
+<<<<<<< HEAD
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_233917) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_11_29_030412) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,19 +36,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_211210) do
   create_table "rentals", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "car_id", null: false
-    t.boolean "owner_acceptance"
-    t.integer "start_milage"
-    t.integer "end_milage"
-    t.boolean "user_started_condition"
-    t.boolean "owner_started_condition"
-    t.boolean "user_end_condition"
-    t.boolean "owner_end_condition"
+    t.boolean "owner_acceptance", default: false
+    t.integer "start_milage", default: 0
+    t.integer "end_milage", default: 0
+    t.boolean "user_started_condition", default: false
+    t.boolean "owner_started_condition", default: false
+    t.boolean "user_end_condition", default: false
+    t.boolean "owner_end_condition", default: false
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_id"], name: "index_rentals_on_car_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating", null: false
+    t.text "feedback"
+    t.integer "writer_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "user_reviews", force: :cascade do |t|
@@ -75,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_211210) do
   add_foreign_key "cars", "users"
   add_foreign_key "rentals", "cars"
   add_foreign_key "rentals", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_reviews", "rentals"
   add_foreign_key "user_reviews", "users"
 end
