@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   resources :cars do
     resources :rentals, only: [:new, :create]
   end
-  resources :rentals, except: [:new, :create, :index]
 
   get "my_bookings", to: "rentals#booked_cars"
-  get "my_rented_cars", to: "rentals#rented_cars"
+  get "my_bookings/:id", to: "rentals#show_booked_car", as: "show_booked_rental"
+  get "my_bookings/:id/receive", to: "rentals#rental_receive", as: "receive_rental"
+  get "my_bookings/:id/return", to: "rentals#rental_return", as: "return_rental"
+  get "my_rented_cars/:id/deliver", to: "rentals#owner_rental_deliver", as: "owner_deliver_rental"
+  get "my_rented_cars/:id/receive", to: "rentals#owner_rental_receive", as: "owner_receive_rental"
+  get "my_rented_cars", to: "rentals#my_rented_cars"
 
   resources :rentals do
     resources :reviews
