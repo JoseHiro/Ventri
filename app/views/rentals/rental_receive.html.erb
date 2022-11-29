@@ -1,1 +1,5 @@
-<%= @rental.user.email %>
+<h1>As a person that rented the car, you follow a methodology to pick up the car</h1>
+<%= simple_form_for(@rental) do |f| %>
+  <%= f.input :user_started_condition, label: "I, #{current_user.first_name} #{current_user.last_name}, accept the conditions and ensured that the id of the owner matches the one shown above.", required: true %>
+  <%= f.submit %>
+<% end %>
