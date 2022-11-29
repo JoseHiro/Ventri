@@ -1,11 +1,12 @@
 <h1>Create a car</h1>
 <%= simple_form_for(@car) do |f| %>
   <%= f.input :category %>
-  <%= f.input :brand%>
-  <%= f.input :model%>
-  <%= f.input :year%>
-  <%= f.input :color%>
-  <%= f.input :number_of_seats%>
-  <%= f.input :number_of_doors%>
+  <%= f.input :brand %>
+  <%= f.input :model %>
+  <%= f.input :engine_size , as: :numeric%>
+  <%= f.input :year , as: :integer%>
+  <%= f.input :color %>
+  <%= f.input :number_of_seats, as: :numeric %>
+  <%= f.input :number_of_doors, as: :numeric %>
   <%= f.submit %>
 <% end %>
