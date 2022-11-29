@@ -1,7 +1,7 @@
 <h1>Your rented cars</h1>
 <div class="container d-flex">
-<div class="card p-3 border">
 <%@rented_cars.each do |rental|%>
+<div class="card p-3 border m-3">
 <h5>Car information:</h5>
 <p>Category:<%= rental.car.category %></p>
 <p>Model:<%= rental.car.model %></p>
@@ -19,4 +19,3 @@
 </div>
 <% end %>
 </div>
-.first_name

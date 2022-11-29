@@ -57,17 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_030412) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "user_reviews", force: :cascade do |t|
-    t.string "comment"
-    t.integer "rating"
-    t.bigint "user_id", null: false
-    t.bigint "rental_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["rental_id"], name: "index_user_reviews_on_rental_id"
-    t.index ["user_id"], name: "index_user_reviews_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -86,6 +75,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_030412) do
   add_foreign_key "rentals", "cars"
   add_foreign_key "rentals", "users"
   add_foreign_key "reviews", "users"
-  add_foreign_key "user_reviews", "rentals"
-  add_foreign_key "user_reviews", "users"
 end

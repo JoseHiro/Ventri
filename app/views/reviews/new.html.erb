@@ -1,0 +1,17 @@
+<div class="container marketing">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 mt-5">
+
+<h1>New review</h1>
+<h2>Leave a feedback to (name)</h2>
+
+<%= simple_form_for([@rental, @review]) do |f| %>
+  <%= f.number_field :rating, in:1..5, style:"width: 100px;" %>
+  <br>
+  <%= f.text_area :feedback, placeholder: 'Leave a comment to the drive', style:"width: 600px; height: 200px"%>
+  <br>
+  <%= f.submit :Submit, class: 'btn btn-primary mb-4'%>
+<% end %>
+   </div>
+  </div>
+</div>
