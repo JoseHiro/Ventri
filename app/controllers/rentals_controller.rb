@@ -63,6 +63,8 @@ class RentalsController < ApplicationController
   end
 
   def new_car_params
-    params.require(:rental).permit(:owner_acceptance, :start_milage, :end_milage, :user_started_condition, :owner_started_condition, :user_end_condition, :owner_end_condition, :start_date, :end_date)
+    params.require(:rental).permit(:owner_acceptance, :start_milage, :end_milage, :user_started_condition,
+                                   :owner_started_condition, :user_end_condition, :owner_end_condition, :start_date,
+                                   :end_date)
   end
 end
