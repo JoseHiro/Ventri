@@ -18,6 +18,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @rental = Rental.new
     @car = Car.find(params[:id])
   end
 
