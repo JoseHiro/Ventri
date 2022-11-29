@@ -5,15 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
-Rental.destroy_all
-Car.destroy_all
-iskander = User.second
-emilio = User.first
-car = Car.new(category: "SUV", brand: "Honda", model: "CRV", year: 1999, color: "black", number_of_seats: 5, number_of_doors: 5, engine_size: 34)
-car.owner = emilio
-car.save
-rental = Rental.new(start_date: Date.new, end_date: Date.new + 1)
-rental.car = car
-rental.user = iskander
-rental.save
+5.times do
+  user_1 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "123456")
+  user_2 = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "123456")
+  car = Car.new(category: Faker::Vehicle.car_type, brand: Faker::Vehicle.manufacture, model: Faker::Vehicle.model, year: Faker::Vehicle.year, color: Faker::Vehicle.color, number_of_seats: (1..5).to_a.sample, number_of_doors: Faker::Vehicle.doors, engine_size: Faker::Vehicle.engine_size)
+  rental = Rental.new(start_date: Faker::Date.forward(days: 1), end_date: Faker::Date.forward(days: 5))
+  car.owner = user_1
+  car.save
+  rental.user = user_2
+  rental.car = car
+  rental.save
+end
