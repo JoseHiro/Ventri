@@ -1,0 +1,27 @@
+<h1>Cars available to you</h1>
+<%@cars.each do |car|%>
+  <div class="">
+    <div>
+      </div>
+        <div class="card-trip m-3" style="border-radius: 15px; width: 80%">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+        <div class="card-trip-infos">
+          <div class="d-flex justify-content-between" style="width: 100%">
+            <div>
+              <h2><%=car.owner.first_name%>'s <%=car.brand%> <%=car.model%></h2>
+              <p>Year of manufacture <%=car.year%></p>
+              <p>Color: <%=car.color%></p>
+              <p>Number of seats: <%=car.number_of_seats%></p>
+              <p>Number of doors: <%=car.number_of_doors%></p>
+              <p>Engine Size (L): <%=car.engine_size%></p>
+            </div>
+            <div>
+              <h2 class="card-trip-pricing mt-3">£99.99</h2>
+              <%= link_to "See Offer", car_path(car), class: "mt-3 btn btn-outline-primary"%>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+<% end %>

@@ -1,0 +1,63 @@
+<div class = "d-flex m-4" style="width: 700px">
+  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered ms-4 me-2" style="width:70px; height:70px;" />
+  <h1><%=@car.owner.first_name%>'s <%=@car.brand%> <%=@car.model%></h1>
+</div>
+
+<div class="d-flex justify-content-center" style="border-radius: 15px; width 100%; height:450px">
+  <div>
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" style="width: 600px; border-radius: 15px 0px 0px 15px"/>
+  </div>
+  <div class = "ms-2">
+    <div>
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" style="width: 300px;"/>
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" style="width: 300px; border-radius: 0px 15px 0px 0px"/>
+    </div>
+    <div>
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" style="width: 300px"/>
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" style="width: 300px; border-radius: 0px 0px 15px 0px"/>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="d-flex justify-content-evenly">
+    <div>
+      <p>Year of manufacture <%=@car.year%></p>
+      <p>Color: <%=@car.color%></p>
+    </div>
+    <div>
+      <p>Number of seats: <%=@car.number_of_seats%></p>
+      <p>Number of doors: <%=@car.number_of_doors%></p>
+    </div>
+    <div>
+      <p>Engine Size (L): <%=@car.engine_size%></p>
+    </div>
+  </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <h2 class="card-trip-pricing">Your price: £99.99</h2>
+  </div>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <hr style="width: 75%">
+</div>
+<% if current_user %>
+  <div class="m-4">
+    <div>
+      <h3>Rent this car?</h3>
+    </div>
+    <div>
+      <div>
+        <%= simple_form_for([@car, @rental]) do |f| %>
+        <%= f.input :start_date, as: :date %>
+        <%= f.input :end_date %>
+        <%= f.submit %>
+      </div>
+    </div>
+  </div>
+  <%end%>
+<%else%>
+<div class="d-flex justify-content-center">
+  <%=link_to "Sign up to rent!", new_user_registration_path, class: "btn btn-outline-primary"%>
+</div>
+<%end%>
