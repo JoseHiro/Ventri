@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_211210) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_29_030412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,13 +32,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_211210) do
   create_table "rentals", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "car_id", null: false
-    t.boolean "owner_acceptance"
-    t.integer "start_milage"
-    t.integer "end_milage"
-    t.boolean "user_started_condition"
-    t.boolean "owner_started_condition"
-    t.boolean "user_end_condition"
-    t.boolean "owner_end_condition"
+    t.boolean "owner_acceptance", default: false
+    t.integer "start_milage", default: 0
+    t.integer "end_milage", default: 0
+    t.boolean "user_started_condition", default: false
+    t.boolean "owner_started_condition", default: false
+    t.boolean "user_end_condition", default: false
+    t.boolean "owner_end_condition", default: false
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
