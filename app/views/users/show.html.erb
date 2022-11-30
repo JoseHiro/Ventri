@@ -9,8 +9,8 @@
       <h3><%= @user.last_name %></h3>
     </div>
     <hr>
-    <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-primary mt-3" %>
-    <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger mt-3" %>
+      <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-primary mt-3" %>
+      <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger mt-3" %>
     </div>
   </div>
 </div>
