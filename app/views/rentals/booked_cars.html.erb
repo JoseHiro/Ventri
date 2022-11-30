@@ -37,33 +37,28 @@
 <% end %>
 </div>
 <div class="container text-center">
+<% if !current_user.rentals.empty? && Rental.returned_cars?(current_user)%>
 <h2>Here is your booking history</h2>
 <br>
-<% if current_user.rentals.length > 0%>
-<% current_user.rentals.each do |rental| %>
-<% if rental.returned %>
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Car</th>
-      <th scope="col">Rented to</th>
+      <th scope="col">Rented from</th>
       <th scope="col">Owner of the car review</th>
     </tr>
   </thead>
   <tbody>
+<% current_user.rentals.each do |rental| %>
+<% if rental.returned %>
     <tr>
       <td><%= rental.car.brand %> <%= rental.car.model %></td>
       <td><%= rental.car.owner.first_name %> <%= rental.car.owner.last_name %></td>
       <td>You drive bad!</td>
     </tr>
+<% end %>
   </tbody>
 </table>
-<% else %>
-<p class="mb-4">You currently have a rental, but the car hasn't been returned. </hp>
 <% end %>
-<% end %>
-<% else %>
-<h3 class="mb-4">You don't have a booking yet! </h3>
 <% end %>
 </div>
