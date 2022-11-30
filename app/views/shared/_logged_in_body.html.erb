@@ -1,29 +1,80 @@
 
-<div class="container">
-  <div style="height: 800px; margin-top:80px;" class=" d-flex">
 
-    <div style="width: 300px; height:400px; background-color: grey;">
-      <div class="d-flex justify-content-center">
-        <% if current_user.avatar.attached? %>
-          <%= cl_image_tag current_user.avatar.key, height: 200, width: 200, class:"mt-4" %>
-        <% else %>
-          <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 200, width: 200,class:"mt-4", style:"border-radius:50%"%>
+<div style="position: fixed; ">
+    <div>
+      <div style="height:800px; width: 100px; background-color: #e0ebeb;">
+        <button class="mt-3 btn btn-outline-primary">Messages</button>
+        <button class="mt-3 btn btn-outline-primary">Search</button>
+        <%= link_to "Lent", new_car_path, class:"mt-3 btn btn-outline-primary" %>
+        <%= link_to "Booking", cars_path, class:"mt-3 btn btn-outline-primary"  %>
+        <%= link_to "Edit account", edit_user_registration_path, class:"mt-3 btn btn-outline-primary" %>
+        <button class="mt-3 btn btn-outline-primary">Help</button>
+      </div>
+    </div>
+  </div>
+
+
+<div style="width: 1000px; height:700px; background-color: #e0ebeb; margin-left: 200px">
+
+
+  <div class="d-flex">
+    <div style="width: 250px; height:300px; background-color:	#e0ebeb;">
+        <div class="d-flex justify-content-center">
+          <% if current_user.avatar.attached? %>
+            <%= cl_image_tag current_user.avatar.key, height: 150, width: 150, class:"mt-4" %>
+          <% else %>
+            <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 150, width: 150,class:"mt-4", style:"border-radius:50%"%>
+          <% end %>
+        </div>
+      </div>
+      <div style="margin: 30px auto; border: solid 2px white; width: 550px;">
+        <p><i style="font-size: 30px; color:red" class="fa-solid fa-bell ms-2 mt-2"></i> Todo list</p>
+        <p>(example)</p>
+        <div class="d-flex ms-2">
+          <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 30, width: 30, style:"border-radius:50%"%>
+          <p class="ms-2">Accept Mike's request?</p>
+          <button class="btn btn-outline-primary btn-sm ms-2">Accept</button>
+          <button class="btn btn-outline-primary btn-sm ms-2">Decline</button>
+        </div>
+        <div class="d-flex mt-3 ms-2">
+          <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 30, width: 30, style:"border-radius:50%"%>
+          <p class="ms-2">Accept Mike's request?</p>
+          <button class="btn btn-outline-primary btn-sm ms-2">Accept</button>
+          <button class="btn btn-outline-primary btn-sm ms-2">Decline</button>
+        </div>
+      </div>
+
+    </div>
+      <div style="margin: 30px auto; border: solid 2px white; width: 800px;">
+        <h4>Your bookings</h4>
+        <p>Pick up location</p>
+        <%# if user has bookings at the moment %>
+        <% if current_user.rentals != [] %>
+          <% current_rental = Rental.find(current_user.id) %>
+         <%# get the car detail %>
+          <% car = Car.find(current_rental.car_id) %>
+          <p>brand:<%= car.brand %></p>
+          <p>model:<%= car.model %></p>
+          <p>color:<%= car.color %></p>
+          <p>owner name</p>
         <% end %>
       </div>
 
-      <div class="d-flex justify-content-around" style="margin-top:40px;">
-        <%= link_to "Booking", cars_path, class:"btn btn-primary"  %>
-        <%= link_to "Edit account", edit_user_registration_path, class:"btn btn-primary" %>
+      <div style="margin: 30px auto; border: solid 2px white; width: 800px;">
+        <h3>Lenting car</h3>
+        <% if current_user.cars != [] %>
+          <% lenting_car = current_user.cars %>
+         <%# get the car detail %>
+          <% lenting_car.each do |car| %>
+
+          <%= car.brand %>
+          <%= car.category %>
+          <%= car.model %>
+          <p>image</p>
+          <% end %>
+
+        <% end %>
       </div>
     </div>
-
-    <div style="width: 700px; height:700px; background-color: grey;" class="ms-4">
-      <h1 style="color:white">Current status</h1>
-      <h2 style="color:white">Lent a car to help people and earn money!</h2>
-      <h3>feedback from user</h3>
-    </div>
-
-
-
   </div>
 </div>
