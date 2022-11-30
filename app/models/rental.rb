@@ -2,7 +2,7 @@ class Rental < ApplicationRecord
   belongs_to :user
   belongs_to :car
   has_one :review
-  
+
   def self.returned_cars?(user)
     resp = false
     user.rentals.each do |rental|

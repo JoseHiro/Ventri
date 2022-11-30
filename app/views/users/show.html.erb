@@ -13,15 +13,10 @@
       <h3><%= @user.last_name %></h3>
     </div>
     <hr>
-<<<<<<< HEAD
-      <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-primary mt-3" %>
-      <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger mt-3" %>
-=======
     <div class="d-flex">
       <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3 me-2" %>
       <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-dark mt-3" %>
     </div>
->>>>>>> master
     </div>
   </div>
 </div>
