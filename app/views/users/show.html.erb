@@ -3,14 +3,25 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-10 mt-5">
-    <img style="width: 100px; height: 100px;"src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255710-stock-illustration-avatar-vector-male-profile-gray.jpg" alt="">
+    <% if @user.avatar.attached? %>
+      <%= cl_image_tag @user.avatar.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" style="height: 300px, width: 400px" alt="">
+    <% end %>
     <div class="d-flex">
       <h3 class="me-2"><%= @user.first_name %></h3>
       <h3><%= @user.last_name %></h3>
     </div>
     <hr>
+<<<<<<< HEAD
       <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-primary mt-3" %>
       <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger mt-3" %>
+=======
+    <div class="d-flex">
+      <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3 me-2" %>
+      <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-dark mt-3" %>
+    </div>
+>>>>>>> master
     </div>
   </div>
 </div>

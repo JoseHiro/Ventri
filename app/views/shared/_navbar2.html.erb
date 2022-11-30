@@ -1,0 +1,32 @@
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <%= link_to "/", class: "navbar-brand ms-2" do %>
+            <h1 style="font-weight:bold; color:white;">Ventri</h1>
+          <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <li class="ms-3 nav-item active">
+                  <%= link_to "Sign up", new_user_registration_path, class:"btn", style:"color:white; width:100px"  %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Login", new_user_session_path, class:"btn", style:"color:white; width:100px"   %>
+                </li>
+                <div class="dropdown">
+                <button class="ms-1 btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">About</a></li>
+                  <li><a class="dropdown-item" href="#">FAQ</a></li>
+                  <li><a class="dropdown-item" href="#">Contact</a></li>
+                </ul>
+              </div>
+            </ul>
+              <form class="ms-5 form-inline d-flex">
+                <input class="form-control mr-sm-2" style="width: 300px" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+     </div>
+</nav>
