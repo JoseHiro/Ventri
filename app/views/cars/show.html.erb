@@ -19,28 +19,34 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-evenly">
+  <div>
+    <p><%=@car.brand%> <%=@car.model%></p>
+    <p>Year of manufacture <%=@car.year%></p>
+    <p>Color: <%=@car.color%></p>
+    <p>Number of seats: <%=@car.number_of_seats%></p>
+    <p>Number of doors: <%=@car.number_of_doors%></p>
+    <p>Engine Size (L): <%=@car.engine_size%></p>
+  </div>
+  <div>
+    <div style="width: 100%; height: 600px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
+
 <div>
-  <div class="d-flex justify-content-evenly">
-    <div>
-      <p>Year of manufacture <%=@car.year%></p>
-      <p>Color: <%=@car.color%></p>
-    </div>
-    <div>
-      <p>Number of seats: <%=@car.number_of_seats%></p>
-      <p>Number of doors: <%=@car.number_of_doors%></p>
-    </div>
-    <div>
-      <p>Engine Size (L): <%=@car.engine_size%></p>
-    </div>
-  </div>
-  </div>
   <div class="d-flex justify-content-center mt-4">
     <h2 class="card-trip-pricing">Your price: £99.99</h2>
   </div>
 </div>
+
 <div class="d-flex justify-content-center mt-4">
   <hr style="width: 75%">
 </div>
+
 <% if current_user && current_user != @car.owner %>
   <div class="m-4">
     <div>
