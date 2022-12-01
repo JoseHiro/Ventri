@@ -1,20 +1,63 @@
-<h1>Your booked car</h1>
-<div class="container">
-<div class="card p-3 border m-3">
-<h5>Car information:</h5>
-<p>Category: <%= @rental.car.category %></p>
-<p>Model: <%= @rental.car.model %></p>
-<p>Brand: <%= @rental.car.brand %></p>
-<p>Year: <%= @rental.car.year %></p>
-<p>Color: <%= @rental.car.color %></p>
-<p>Number of seats: <%= @rental.car.number_of_seats%></p>
-<p>Number of door: <%= @rental.car.number_of_doors%></p>
-<p>Engine Size: <%= @rental.car.engine_size%></p>
-<p>Start milage: <%= @rental.start_milage > 0 ? @rental.start_milage : "It will be assigned when picking up the car"  %></p>
-<p>End milage: <%= @rental.end_milage > 0 ? @rental.start_milage : "It will be assigned when returning the car" %></p>
-<p>Start rental day: <%= @rental.start_date %></p>
-<p>End rental day: <%= @rental.end_date %></p>
-<p>Rented to: <%= @rental.car.owner.email %></p>
+<div class="map" style="width: 100%; height: 400px; border-radius-button: 10px"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
- <%= link_to "return to dashboard", root_path, class:"btn btn-outline-primary" %>
-</div>
+<div class="main-content">
+  <div class="left-content">
+    <div class="border card p-3">
+      <h1 class="mt-3">Your <strong><%= @rental.car.brand %>, <%= @rental.car.model %></strong> car information</h1>
+      <br>
+      <img class="img-car" src="https://www.ford.mx/content/dam/Ford/website-assets/latam/mx/open-graph/2021/nameplate/escape-hibrida/ford-escape-hibrida-2021-camioneta-suv-especificaciones-capacidad-autonomia-poder.jpg" alt="">
+      <div class="d-flex flex-row justify-content-evenly">
+      <div class="d-flex flex-column w-50">
+      <div class="d-flex flex-row  align-items-center">
+        <h3>Rental Status</h3>
+        <% if !@rental.owner_acceptance %>
+        <span style="margin:0 auto"class="badge bg-danger badge-pill badge-success w-25">Unapproved</span>
+        <% else %>
+        <span style="margin:0 auto"class="badge bg-success badge-pill badge-success w-25">Approved</span>
+        <% end %>
+      </div>
+        <% if !@rental.owner_acceptance %>
+        <p>The owner of this car has not accept this rental. This procces takes in average 1 hour.</p>
+        <% else %>
+        <p>Your rental is approve!</p>
+        <% if @rental.start_date < Date.new %>
+        <a href="" class="btn btn-dark">Start pick up proccess</a>
+        <% else %>
+        <a href="" class="btn btn-dark disabled">Start pick up proccess on <%= @rental.start_date %></a>
+        <% end %>
+        <% end %>
+      </div>
+       <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-column p-2 w-50">
+        <p><span><i style="font-size:24px;" class="fa-solid fa-car-side"></i> </span> <%= @rental.car.brand %>, <%= @rental.car.model %></p>
+        <p><span><i style="font-size:24px;" class="fa-solid fa-door-open"></i> </span><%= @rental.car.number_of_doors %></p>
+        </div>
+        <div class="d-flex flex-column p-3">
+        <p><span><i style="font-size:24px;" class="fa-solid fa-bolt"></i> </span><%= @rental.car.engine_size %></p>
+        <p><span><i style="font-size:24px;" class="fa-solid fa-couch"></i> </span><%= @rental.car.engine_size %></p>
+        </div>
+      </div>
+       </div>
+    </div>
+  </div>
+  <div class="right-content">
+    <div class="border card p-3">
+    <h3>Rental details</h3>
+    <div class="d-flex flex-column">
+      <% if @rental.car.owner.avatar.attached? %>
+      <%= cl_image_tag @rental.car.owner.avatar.key, height: 200, width: 200, class:"p-3 img-circle" %>
+      <% else %>
+      <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 200, width: 200, class:"p-3 img-circle"%>
+      <% end %>
+      <h5 style="text-align:center;"><strong><%= @rental.car.owner.first_name %> <%= @rental.car.owner.last_name %></strong></h5>
+      <p  class="card-text" ><span><i class="fa-solid fa-location-dot"></i> </span><%= @rental.car.address %></p>
+      <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>
+      <p class="card-text"><i class="fa-solid fa-tag"></i> <%= @rental.car.price %>€ per day</p>
+      <p class="card-text" style="font-size:20px"><span style="margin:0 auto"class="badge bg-dark badge-pill badge-success ">Total for <%= @days %> day(s): <%=@price%>€</span></p>
+
+    </div>
+    </div>
+  </div>
