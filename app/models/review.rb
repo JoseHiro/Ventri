@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   # belongs_to :writer, class_name: :User, foreign_key: :user_id
   belongs_to :user
-  belongs_to :rental
+  # belongs_to :rental
 end
+# rentals/:rental_id/reviews/new(.:format)
