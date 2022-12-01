@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'users/show'
   root to: "pages#home"
 
+  resources :users do
+    resources :reviews
+  end
+
   resources :cars do
     resources :rentals, only: [:new, :create]
   end
@@ -18,7 +22,7 @@ Rails.application.routes.draw do
   get "my_rented_cars/:id", to: "rentals#show_owner_rental", as: "show_owner_rental"
 
   resources :rentals do
-    resources :reviews
+
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
