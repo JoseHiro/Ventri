@@ -27,13 +27,10 @@ class CarsController < ApplicationController
   def show
     @rental = Rental.new
     @car = Car.find(params[:id])
-    car = [@car]
-    @marker = car.geocoded.map do |vehicle|
-      {
-        lat: car.latitude,
-        lng: car.longitude
-      }
-    end
+    @markers = [{
+      lat: @car.latitude,
+      lng: @car.longitude
+    }]
   end
 
   def edit

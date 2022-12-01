@@ -3,11 +3,13 @@
 <div style="position: fixed; ">
     <div>
       <div style="height:800px; width: 100px; background-color: #e0ebeb;">
-        <button class="mt-3 btn btn-outline-primary">Messages</button>
-        <button class="mt-3 btn btn-outline-primary">Search</button>
-        <%= link_to "Lent", new_car_path, class:"mt-3 btn btn-outline-primary" %>
-        <%= link_to "Booking", cars_path, class:"mt-3 btn btn-outline-primary"  %>
+
+
+        <%= link_to "Rent your car", new_car_path, class:"mt-3 btn btn-outline-primary" %>
+        <%= link_to "Book a car", cars_path, class:"mt-3 btn btn-outline-primary"  %>
         <%= link_to "Edit account", edit_user_registration_path, class:"mt-3 btn btn-outline-primary" %>
+        <button class="mt-3 btn btn-outline-primary">Search</button>
+        <button class="mt-3 btn btn-outline-primary">Messages</button>
         <button class="mt-3 btn btn-outline-primary">Help</button>
       </div>
     </div>
@@ -50,7 +52,7 @@
         <p>Pick up location</p>
         <%# if user has bookings at the moment %>
         <% if current_user.rentals != [] %>
-          <% current_rental = Rental.find(current_user.id) %>
+          <% current_rental = Rental.find_by(user_id: current_user.id) %>
          <%# get the car detail %>
           <% car = Car.find(current_rental.car_id) %>
           <p>brand:<%= car.brand %></p>

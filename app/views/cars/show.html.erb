@@ -19,27 +19,26 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-evenly">
-  <div>
-    <p><%=@car.brand%> <%=@car.model%></p>
-    <p>Year of manufacture <%=@car.year%></p>
-    <p>Color: <%=@car.color%></p>
-    <p>Number of seats: <%=@car.number_of_seats%></p>
-    <p>Number of doors: <%=@car.number_of_doors%></p>
-    <p>Engine Size (L): <%=@car.engine_size%></p>
-  </div>
-  <div>
-    <div style="width: 100%; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-evenly" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
+    <div class="mt-5 ms-5" style="bottom: 0; right: 0">
+      <h2>Rental info</h2>
+      <p><i class="fa-solid fa-car mt-3"></i><span> </span><%=@car.brand%> <%=@car.model%></p>
+      <p><i class="fa-solid fa-business-time"></i><span> </span>Year of manufacture <%=@car.year%></p>
+      <p><i class="fa-solid fa-droplet"></i><span> </span>Color: <%=@car.color%></p>
+      <p><i class="fa-solid fa-chair"></i></i><span> </span>Number of seats: <%=@car.number_of_seats%></p>
+      <p><i class="fa-solid fa-door-open"></i><span> </span>Number of doors: <%=@car.number_of_doors%></p>
+      <p><i class="fa-solid fa-bolt"></i><span> </span>Engine Size (L): <%=@car.engine_size%></p>
+      <h4><i class="fa-solid fa-dollar-sign"></i><span> </span>Daily rental price:</h4>
+      <h4 class="ms-4 mt-2">£99.99</h4>
     </div>
-  </div>
-</div>
-
-<div>
-  <div class="d-flex justify-content-center mt-4">
-    <h2 class="card-trip-pricing">Your price: £99.99</h2>
+    <div>
+      <div style="width: 40vw; height: 500px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 </div>
 
