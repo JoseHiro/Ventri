@@ -34,7 +34,12 @@
         <h4>Rental request person </h4>
         <div class="d-flex flex-column p-3">
           <div>
-            <p class="card-text"><span><%= cl_image_tag @rental.car.owner.avatar.key, height:40, width: 40, class:" img-circle" %></span> <%= @rental.user.first_name %> <%= @rental.user.last_name %></p>
+            <p class="card-text"><span>
+              <% if @rental.user.avatar.attached? %>
+                <%= cl_image_tag @rental.user.avatar.key, height:40, width: 40, class:" img-circle" %></span> <%= @rental.user.first_name %> <%= @rental.user.last_name %></p>
+              <% else %>
+               <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 40, width: 40, class:"p-3 img-circle"%>
+              <% end %>
             <p class="card-text"><span><i class="fa-solid fa-calendar-days"></i></span> <strong><%= @rental.start_date %></strong> to <strong><%= @rental.end_date %></strong> <p style="font-size:12px; margin-top:-15px">* Your <%= @rental.car.brand %>, <%= @rental.car.model %> <strong>has not other requests</strong> within this time interval.</p></p>
             <p class="card-text"><span><i class="fa-solid fa-location-dot"></i></span> <%= @rental.car.address %></p>
           </div>
@@ -56,7 +61,11 @@
     <div class="border card p-3">
     <h3><strong>Finance details</strong></h3>
     <div class="d-flex flex-column">
+    <% if @rental.car.owner.avatar.attached? %>
       <%= cl_image_tag @rental.car.owner.avatar.key, height: 200, width: 200, class:"p-3 img-circle" %>
+    <% else %>
+    <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 200, width: 200, class:"p-3 img-circle"%>
+    <% end %>
       <h5 style="text-align:center;"><strong><%= @rental.car.owner.first_name %> <%= @rental.car.owner.last_name %></strong></h5>
       <p  class="card-text" ><span><i class="fa-solid fa-location-dot"></i> </span><%= @rental.car.address %></p>
       <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>

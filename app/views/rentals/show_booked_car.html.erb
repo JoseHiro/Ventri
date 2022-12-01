@@ -47,7 +47,11 @@
     <div class="border card p-3">
     <h3>Rental details</h3>
     <div class="d-flex flex-column">
+      <% if @rental.car.owner.avatar.attached? %>
       <%= cl_image_tag @rental.car.owner.avatar.key, height: 200, width: 200, class:"p-3 img-circle" %>
+      <% else %>
+      <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 200, width: 200, class:"p-3 img-circle"%>
+      <% end %>
       <h5 style="text-align:center;"><strong><%= @rental.car.owner.first_name %> <%= @rental.car.owner.last_name %></strong></h5>
       <p  class="card-text" ><span><i class="fa-solid fa-location-dot"></i> </span><%= @rental.car.address %></p>
       <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>
