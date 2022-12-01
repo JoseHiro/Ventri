@@ -32,20 +32,20 @@
       <h4><i class="fa-solid fa-dollar-sign"></i><span> </span>Price/day: £99.99</h4>
       <% if current_user && current_user != @car.owner %>
       <div class="d-flex justify-content-center">
-        <a href="#new_rental" class="btn btn-outline-primary mt-3 me-2">Rent it!</a>
+        <a href="#new_rental" class="btn btn-dark mt-3 me-2">Rent it!</a>
       </div>
       <% elsif current_user && current_user == @car.owner %>
         <div class="d-flex">
           <div class="m-1">
-            <%= link_to "Edit this car!", edit_car_path(@car), class: "btn btn-outline-primary"%>
+            <%= link_to "Edit this car!", edit_car_path(@car), class: "btn btn-dark"%>
           </div>
           <div class="m-1">
-            <%= button_to "Delete", car_path(@car), data:{confirm: "Are you sure?"}, method: :delete, class: "btn btn-outline-danger"%>
+            <%= button_to "Delete", car_path(@car), data:{confirm: "Are you sure?"}, method: :delete, class: "btn btn-dark"%>
           </div>
         </div>
       <% else %>
         <div class="d-flex justify-content-center">
-          <%= link_to "Sign up to rent!", new_user_registration_path, class: "btn btn-outline-primary mt-3 me-2"%>
+          <%= link_to "Sign up to rent!", new_user_registration_path, class: "btn btn-dark mt-3 me-2"%>
         </div>
       <% end %>
     </div>
@@ -64,7 +64,9 @@
 </div>
 
 <% if current_user && current_user != @car.owner %>
-  <div class="m-4">
+  <div class="d-flex justify-content-center m-4">
+  <div class="d-flex justify-content-evenly" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
+    <div>
     <div>
       <h3>Please fill in the form below</h3>
     </div>
@@ -77,5 +79,7 @@
         <%end%>
       </div>
     </div>
+    </div>
+  </div>
   </div>
 <%end%>
