@@ -16,4 +16,5 @@
 <p>End rental day: <%= @rental.end_date %></p>
 <p>Rented to: <%= @rental.car.owner.email %></p>
 </div>
+ <%= link_to "return to dashboard", root_path, class:"btn btn-outline-primary" %>
 </div>
