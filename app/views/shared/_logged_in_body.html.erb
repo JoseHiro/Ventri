@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex" style="">
   <div>
     <div class="d-flex">
       <div class="" style="margin-top: 50px; margin-left: 80px; height: 200px; ">
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="mt-4" style="border-radius: 8px; margin-left: 80px; height: 300px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="mt-4" style="border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
       <div class="container">
         <h4 style="font-weight:bold; padding-top: 20px;">Your bookings</h4>
         <hr>
@@ -108,6 +108,7 @@
                 <p>Category: <%= car.category%></p>
                 <p>Model: <%= car.model %></p>
               </div>
+              <%= link_to "Show", car_path(car), class:"btn btn-success", style:"height: 40px;"%>
             </div>
             <% end %>
           <% end %>
@@ -115,7 +116,7 @@
     </div>
   </div>
 
-  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; height:1230px; width: 500px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
+  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 500px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
     <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i>Hot cars</h3>
     <% @cars.each do |car|%>
     <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 0 auto; width: 25rem; border-radius:10px;">
@@ -130,6 +131,5 @@
       </div>
     </div>
     <% end %>
-
   </div>
 </div>
