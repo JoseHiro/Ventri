@@ -10,10 +10,22 @@ class RentalsController < ApplicationController
 
   def show_booked_car
     @rental = Rental.find(params[:id])
+    @markers = [{
+      lat: @rental.car.latitude,
+      lng: @rental.car.longitude
+    }]
+    @price = (@rental.end_date - @rental.start_date).to_i * @rental.car.price.to_i
+    @days = (@rental.end_date - @rental.start_date).to_i
   end
 
   def show_owner_rental
     @rental = Rental.find(params[:id])
+    @markers = [{
+      lat: @rental.car.latitude,
+      lng: @rental.car.longitude
+    }]
+    @price = (@rental.end_date - @rental.start_date).to_i * @rental.car.price.to_i
+    @days = (@rental.end_date - @rental.start_date).to_i
   end
 
   def new
