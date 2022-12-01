@@ -1,84 +1,17 @@
-
-<div class="d-flex">
-  <div style="top: 100px; width: 50px;">
-    <div style="position: fixed;">
-      <%= link_to edit_user_registration_path do%>
-        <i style="font-size: 25px"class="mt-3 btn fa-solid fa-user-pen"></i><br>
-      <% end %>
-      <%= link_to edit_user_registration_path do%>
-        <i style="font-size: 25px" class="mt-3 btn fa-solid fa-message"></i><br>
-      <% end %>
-      <%= link_to new_car_path do%>
-        <i style="font-size: 25px" class="mt-3 btn fa-solid fa-car"></i><br>
-      <% end %>
-      <%= link_to cars_path do%>
-        <i style="font-size: 25px" class="mt-3 btn fa-solid fa-magnifying-glass"></i><br>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="" style="width: 1000px; height:700px; background-color: #f2f2f2; margin-left: 200px">
-
-
-  <div class="d-flex">
-    <div style="width: 250px; height:300px; background-color:	#f2f2f2; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-        <div class="d-flex justify-content-center">
-          <% if current_user.avatar.attached? %>
-            <%= cl_image_tag current_user.avatar.key, height: 150, width: 150, class:"mt-4", style:"border-radius: 50%;" %>
-          <% else %>
-            <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 150, width: 150, class:"mt-4", style:"border-radius:50%"%>
-          <% end %>
-        </div>
-      </div>
-      <div style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 30px auto; border: solid 2px white; width: 550px;">
-        <p><i style="font-size: 30px; color:red" class="fa-solid fa-bell ms-2 mt-2"></i> Todo list</p>
-        <p>(example)</p>
-        <div class="d-flex ms-2">
-          <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 30, width: 30, style:"border-radius:50%"%>
-          <p class="ms-2">Accept Mike's request?</p>
-          <button class="btn btn-outline-primary btn-sm ms-2">Accept</button>
-          <button class="btn btn-outline-primary btn-sm ms-2">Decline</button>
-        </div>
-        <div class="d-flex mt-3 ms-2">
-          <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 30, width: 30, style:"border-radius:50%"%>
-          <p class="ms-2">Accept Mike's request?</p>
-          <button class="btn btn-outline-primary btn-sm ms-2">Accept</button>
-          <button class="btn btn-outline-primary btn-sm ms-2">Decline</button>
-        </div>
-      </div>
-
-    </div>
-      <div style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 30px auto; border: solid 2px white; width: 800px;">
-        <h4>Your bookings</h4>
-        <p>Pick up location</p>
-        <%# if user has bookings at the moment %>
-        <% if current_user.rentals != [] %>
-          <% current_rental = Rental.find_by(user_id: current_user.id) %>
-         <%# get the car detail %>
-          <% car = Car.find(current_rental.car_id) %>
-          <p>brand:<%= car.brand %></p>
-          <p>model:<%= car.model %></p>
-          <p>color:<%= car.color %></p>
-          <p>owner name</p>
-        <% end %>
-      </div>
-
-      <div style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 30px auto; border: solid 2px white; width: 800px;">
-        <h3>Lenting car</h3>
-        <% if current_user.cars != [] %>
-          <% lenting_car = current_user.cars %>
-         <%# get the car detail %>
-          <% lenting_car.each do |car| %>
-
-          <%= car.brand %>
-          <%= car.category %>
-          <%= car.model %>
-          <p>image</p>
-          <% end %>
-
-        <% end %>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
+<% if rental.owner_acceptance == false %>
+                <h4>Requests</h4>
+                <div>
+                  <% user = User.find(rental.user_id) %>
+                    <div class="d-flex">
+                  <% if user.avatar.attached? %>
+                    <%= cl_image_tag user.avatar.key, height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% else %>
+                    <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <% end %>
+                    <h5 class="mt-2 ms-3"><%= "#{user.first_name} send you a request for #{car.model}" %></h5>
+                    <%= link_to "View", show_booked_rental_path(rental), class:"ms-3 btn btn-light" %>
+                  </div>
+                </div>
+              <% else %>
+                <p>No requests</p>
+              <% end %>
