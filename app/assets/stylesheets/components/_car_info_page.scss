@@ -1,0 +1,27 @@
+.main-content{
+  margin-left: 10%;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: 65% 15% 25%;
+  margin-top: 10px;
+}
+.left-content{
+  grid-column: 1;
+}
+.right-content{
+  grid-column: 3;
+}
+.img-car{
+  width: 550px;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+.img-circle{
+  border-radius: 100px;
+  margin: 0 auto;
+}
+.img-small{
+  width: 10px !important;
+  height: 10px !important;
+}
