@@ -1,22 +1,26 @@
 
-<h1>Show page</h1>
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-10 mt-5">
-    <% if @user.avatar.attached? %>
-      <%= cl_image_tag @user.avatar.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" style="height: 300px, width: 400px" alt="">
-    <% end %>
     <div class="d-flex">
-      <h3 class="me-2"><%= @user.first_name %></h3>
-      <h3><%= @user.last_name %></h3>
+      <% if @user.avatar.attached? %>
+        <%= cl_image_tag @user.avatar.key, height: 200, width: 200, crop: :fill, style:"border-radius:50%" %>
+      <% else %>
+  ``    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" style="height: 300px, width: 400px; border-radius:50%" alt="">
+      <% end %>
+      <div class="d-flex mt-4">
+        <h2 class="me-2"><%= @user.first_name %></h2>
+        <h2><%= @user.last_name %></h2>
+        <div class="d-flex">
+          <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3 me-2" %>
+          <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-dark mt-3" %>
+        </div>
+      </div>
+
     </div>
     <hr>
-    <div class="d-flex">
-      <%= button_to "Edit my account",  edit_user_registration_path(current_user), class:"btn btn-outline-dark mt-3 me-2" %>
-      <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-dark mt-3" %>
-    </div>
+    <h1>Reviews</h1>
+
     </div>
   </div>
 </div>
