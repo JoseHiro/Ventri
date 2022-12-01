@@ -64,9 +64,12 @@
 </div>
 
 <% if current_user && current_user != @car.owner %>
-  <div class="m-4">
+  <div class="d-flex justify-content-center m-4">
+  <div class="d-flex justify-content-evenly" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
+    <div>
     <div>
       <h3>Please fill in the form below</h3>
+    </div>
     </div>
     <div>
       <div id="new_rental">
@@ -77,5 +80,6 @@
         <%end%>
       </div>
     </div>
+  </div>
   </div>
 <%end%>
