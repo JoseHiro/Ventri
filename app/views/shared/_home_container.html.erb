@@ -1,17 +1,21 @@
-<header style="background-image: URL('https://wallpapercave.com/wp/wp5055279.jpg'); height: 500px;" class="d-flex align-items-center">
+<header style="background-image: URL('https://wallpapercave.com/wp/wp5055279.jpg'); height: 500px;">
   <%# <form class="example" action="action_page.php">
     <input type="text" placeholder="Search your car.." name="search" style="width: 300px">
     <button type="submit"></button>
   </form> %>
 
+<div style= "position: relative;">
 
-  <h1>This is the home page</h1>
-    <div style="background-image: URL('https://wallpapercave.com/wp/wp5055279.jpg')">
-      <h2 style="color:white;">Are you ready for Adventure?</h2>
-      <h3 style="color:white;">Let's begin...</h3>
-      <div class="d-flex mt-4">
-        <%= link_to "See Cars!", cars_path, class:"btn btn-outline-success", style:"width:200px"   %>
-      </div>
-      </div>
+<div class="d-flex align-items-center;" style="position: relative; left: 35vw; width: 30vw">
+  <div style="background-color: none; position: relative; top: 6vh;">
+    <h1 style="color:white;">Custom car rentals</h1>
+    <h2 style="color:white;">Are you ready for Adventure?</h2>
+    <h3 style="color:white;">Let's begin...</h3>
+    <div class="d-flex mt-4">
+      <%= link_to "See Cars!", cars_path, class:"btn btn-outline-success", style:"width:200px"%>
     </div>
+    </div>
+  </div>
+</div>
+</div>
   </header>
