@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex" style="">
   <div>
     <div class="d-flex">
       <div class="" style="margin-top: 50px; margin-left: 80px; height: 200px; ">
@@ -7,7 +7,7 @@
         <% else %>
           <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 150, width: 150, class:"mt-4", style:"border-radius:50%"%>
         <% end %>
-        <h4>Hello <%= current_user.first_name %></h4>
+        <h4 class="mt-3 ms-2">Hello <%= current_user.first_name %></h4>
       </div>
 
       <div class="" style="margin-top: 50px; border-radius: 8px; margin-left: 50px; height: 200px;; width: 600px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
@@ -26,44 +26,74 @@
       </div>
     </div>
 
-    <div class="" style="margin-top: 50px; border-radius: 8px; margin-left: 80px; height: 300px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="" style="margin-top: 50px; padding-bottom:30px; border-radius: 8px; margin-left: 80px; height:; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
       <div class="container" style="margin-top: 20px;">
           <h3 style="font-weight:bold; padding-top: 20px;" class=""><i style="font-size: 20px; color:black" class="fa-solid fa-bell"></i> Pending actions </h3>
           <hr>
-
-          <% if current_user.rentals != []  %>
-            <% rentals = current_user.rentals %>
-            <h3 style="font-weight:bold">You have requests</h3>
-            <% rentals.each do |rental| %>
-            <div>
-            <% user = User.find(rental.user_id) %>
-            <%= user.first_name %>
-            </div>
-
+          <% if current_user.cars != []  %>
+            <% cars = current_user.cars %>
+            <% cars.each do |car| %>
+              <% rentals = Rental.where(car_id: car.id) %>
+              <% rentals.each do |rental|%>
+                <% if rental.owner_acceptance == false %>
+                  <div class="mt-3 d-flex justify-content-between">
+                    <div class="">
+                      <% user = User.find(rental.user_id) %>
+                      <% if user.avatar.attached? %>
+                        <%= cl_image_tag user.avatar.key, height: 40, width: 40, crop: :fill %>
+                      <% else %>
+                        <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 40, width: 40, crop: :fill,  class:"avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                      <% end %>
+                      <%= "#{user.first_name} has sent you a request for model #{car.model}" %>
+                    </div>
+                    <%= link_to "View", show_booked_rental_path(rental), class:"btn btn-light", style:"padding-bottom:30px; height:30px"%>
+                  </div>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
       </div>
     </div>
 
-    <div class="mt-4" style="border-radius: 8px; margin-left: 80px; height: 300px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="mt-4" style="border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
       <div class="container">
         <h4 style="font-weight:bold; padding-top: 20px;">Your bookings</h4>
         <hr>
-        <p>Pick up location</p>
         <%# if user has bookings at the moment %>
         <% if current_user.rentals != [] %>
-          <% current_rental = Rental.find_by(user_id: current_user.id) %>
-         <%# get the car detail %>
-          <% car = Car.find(current_rental.car_id) %>
-          <p>brand:<%= car.brand %></p>
-          <p>model:<%= car.model %></p>
-          <p>color:<%= car.color %></p>
-          <p>owner name</p>
+          <% rentals = Rental.where(user_id: current_user.id) %>
+          <% rentals.each do |rental| %>
+            <% car = Car.find(rental.car_id) %>
+
+           <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <img style= "width:100px; height: 100px" class="mt-2 mb-2" src="https://i.pinimg.com/originals/1f/47/4a/1f474a542a079e29a46724e53612ac67.jpg" alt="">
+                <div class="ps-3">
+                  <p>Model: <%= car.model %></p>
+                  <% if rental.owner_acceptance == true %>
+                    <div class="d-flex">
+                    <p>Acceptance:<p>
+                    <i class="ms-3 fa-solid fa-check"></i>
+                    </div>
+                  <% else rental.owner_acceptance == false %>
+                    <div class="d-flex">
+                    <p>Acceptance:<p>
+                    <i class="ms-3 fa-solid fa-x"></i>
+                    </div>
+                  <% end %>
+                  <p>Pickup location: <%= car.address%></p>
+                  </div>
+              </div>
+
+
+              <%= link_to "View", show_booked_rental_path(rental), class:"btn btn-light", style:"padding-bottom:30px; height:30px"%>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
 
-     <div class="mt-4" style="border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+     <div class="mt-4" style=" padding-bottom: 30px;border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
        <div class="container">
         <h3 style="font-weight:bold; padding-top:20px">Lenting car</h3>
         <hr>
@@ -78,6 +108,7 @@
                 <p>Category: <%= car.category%></p>
                 <p>Model: <%= car.model %></p>
               </div>
+              <%= link_to "Show", car_path(car), class:"btn btn-success", style:"height: 40px;"%>
             </div>
             <% end %>
           <% end %>
@@ -85,11 +116,11 @@
     </div>
   </div>
 
-  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; height:1230px; width: 500px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
-    <h3 style="font-weight:bold">Hot cars!!!</h3>
+  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 500px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
+    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i>Hot cars</h3>
     <% @cars.each do |car|%>
-    <div class="card mt-4" style="margin: 0 auto; width: 25rem;">
-      <img class="card-img-top" src="https://blog.dupontregistry.com/wp-content/uploads/2021/02/koenigseggjesko-scaled.jpg" alt="Card image cap" style="height:200px;">
+    <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 0 auto; width: 25rem; border-radius:10px;">
+      <img class="card-img-top" src="https://blog.dupontregistry.com/wp-content/uploads/2021/02/koenigseggjesko-scaled.jpg" alt="Card image cap" style="border-radius:10px; height:200px;">
       <div class="card-body d-flex justify-content-between">
         <div class="">
           <p class="card-title"><%= car.category %></p>
@@ -100,6 +131,5 @@
       </div>
     </div>
     <% end %>
-
   </div>
 </div>

@@ -1,7 +1,8 @@
+
+<div class="container marketing card border p-1">
 <h1>Create a car</h1>
-<div class="container marketing">
   <div class="row d-flex justify-content-center">
-    <div class="col-10 mt-5">
+    <div class="col-10 p-4">
       <%= simple_form_for(@car) do |f| %>
         <%= f.input :category %>
         <%= f.input :brand %>
@@ -13,7 +14,7 @@
         <%= f.input :number_of_doors, as: :numeric %>
         <%= f.input :price, as: :float%>
         <%= f.input :address, as: :string%>
-        <%= f.submit %>
+        <%= f.submit class: "btn btn-dark"%>
       <% end %>
      </div>
   </div>

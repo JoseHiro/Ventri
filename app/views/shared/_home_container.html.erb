@@ -1,4 +1,4 @@
-<header style="background: black; height: 500px;" class="d-flex align-items-center">
+<header style="background-image: URL('https://wallpapercave.com/wp/wp5055279.jpg'); height: 500px;" class="d-flex align-items-center">
   <%# <form class="example" action="action_page.php">
     <input type="text" placeholder="Search your car.." name="search" style="width: 300px">
     <button type="submit"></button>
@@ -6,13 +6,11 @@
 
 
   <h1>This is the home page</h1>
-    <div style="backround-image: URL('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.d23e5e7hYUszcGylL70f5AHaEK%26pid%3DApi&f=1&ipt=a6907c166dd2e612d90c190b0f48c763b511e9992b1cf0e16220e970995ed381&ipo=images')">
+    <div style="background-image: URL('https://wallpapercave.com/wp/wp5055279.jpg')">
       <h2 style="color:white;">Are you ready for Adventure?</h2>
       <h3 style="color:white;">Let's begin...</h3>
       <div class="d-flex mt-4">
-        <%= link_to "Sign up", new_user_registration_path, class:"btn btn-light me-3", style:"width:100px"  %>
-        <%= link_to "Login", new_user_session_path, class:"btn btn-outline-light", style:"width:100px"   %>
-        <%= link_to "See Cars!", cars_path, class:"btn btn-outline-light ms-3", style:"width:100px"   %>
+        <%= link_to "See Cars!", cars_path, class:"btn btn-outline-success", style:"width:200px"   %>
       </div>
       </div>
     </div>
