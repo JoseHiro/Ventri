@@ -7,7 +7,7 @@
         <% else %>
           <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 150, width: 150, class:"mt-4", style:"border-radius:50%"%>
         <% end %>
-        <h4 class="mt-3 ms-2">Hello <%= current_user.first_name %></h4>
+        <h5 class="mt-3 ms-2">Hello <%= current_user.first_name %></h5>
       </div>
 
       <div class="" style="margin-top: 50px; border-radius: 8px; margin-left: 50px; height: 200px;; width: 600px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
@@ -55,9 +55,9 @@
       </div>
     </div>
 
-    <div class="mt-4" style="border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="mt-4" style="border-radius: 8px; padding-bottom:30px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
       <div class="container">
-        <h4 style="font-weight:bold; padding-top: 20px;">Your bookings</h4>
+        <h4 style="font-weight:bold; padding-top: 20px;"><i class="fa-solid fa-phone"></i> Your bookings</h4>
         <hr>
         <%# if user has bookings at the moment %>
         <% if current_user.rentals != [] %>
@@ -95,20 +95,22 @@
 
      <div class="mt-4" style=" padding-bottom: 30px;border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
        <div class="container">
-        <h3 style="font-weight:bold; padding-top:20px">Lenting car</h3>
+        <h4 style="font-weight:bold; padding-top:20px"><i class="fa-solid fa-car"></i> Lenting car</h4>
         <hr>
           <% if current_user.cars != [] %>
             <% lenting_car = current_user.cars %>
           <%# get the car detail %>
             <% lenting_car.each do |car| %>
-            <div class="d-flex">
-              <img style= "width:100px; height: 100px" class="mt-2 mb-2" src="https://i.pinimg.com/originals/1f/47/4a/1f474a542a079e29a46724e53612ac67.jpg" alt="">
-              <div class="ps-3">
-                <p>Brand: <%= car.brand %></p>
-                <p>Category: <%= car.category%></p>
-                <p>Model: <%= car.model %></p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <img style= "width:100px; height: 100px" class="mt-2 mb-2" src="https://i.pinimg.com/originals/1f/47/4a/1f474a542a079e29a46724e53612ac67.jpg" alt="">
+                <div class="ps-3">
+                  <p>Brand: <%= car.brand %></p>
+                  <p>Category: <%= car.category%></p>
+                  <p>Model: <%= car.model %></p>
+                </div>
               </div>
-              <%= link_to "Show", car_path(car), class:"btn btn-success", style:"height: 40px;"%>
+              <%= link_to "Show", car_path(car), class:"btn btn-light", style:"height: 40px;"%>
             </div>
             <% end %>
           <% end %>
@@ -116,10 +118,10 @@
     </div>
   </div>
 
-  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 500px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
-    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i>Hot cars</h3>
+  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 440px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
+    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i> Hot cars</h3>
     <% @cars.each do |car|%>
-    <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin: 0 auto; width: 25rem; border-radius:10px;">
+    <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 420px; border-radius:10px;">
       <img class="card-img-top" src="https://blog.dupontregistry.com/wp-content/uploads/2021/02/koenigseggjesko-scaled.jpg" alt="Card image cap" style="border-radius:10px; height:200px;">
       <div class="card-body d-flex justify-content-between">
         <div class="">
@@ -127,7 +129,7 @@
           <p class="card-text"><%= car.brand %></p>
           <p class="card-text"><%= car.model  %></p>
         </div>
-        <%= link_to "Show", car_path(car), class:"btn btn-success", style:"height: 40px;"%>
+        <%= link_to "Show", car_path(car), class:"btn btn-light", style:"height: 40px;"%>
       </div>
     </div>
     <% end %>

@@ -14,6 +14,7 @@
         <%= f.input :number_of_doors, as: :numeric %>
         <%= f.input :price, as: :float%>
         <%= f.input :address, as: :string%>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
         <%= f.submit class: "btn btn-dark"%>
       <% end %>
      </div>
