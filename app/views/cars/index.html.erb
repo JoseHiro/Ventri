@@ -21,7 +21,7 @@
               <p>Engine Size (L): <%=car.engine_size%></p>
             </div>
             <div>
-              <h2 class="card-trip-pricing mt-3">£99.99</h2>
+              <h2 class="card-trip-pricing mt-3">£<%=car.price%></h2>
               <%= link_to "See Offer", car_path(car), class: "mt-3 btn btn-dark"%>
               <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
             </div>

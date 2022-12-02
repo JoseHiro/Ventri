@@ -39,7 +39,11 @@ class CarsController < ApplicationController
 
   def update
     @car = Car.find(params[:id])
-    @car.update(parmas[:car])
+    if @car.update(car_params)
+      redirect_to car_path(@car)
+    else
+      render :edit, :unprocessable_entity
+    end
   end
 
   def destroy
@@ -51,11 +55,7 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    # params[:numbers_of_doors] = params[:numbers_of_doors].to_i
-    # params[:number_of_seats] = params[:number_of_seats].to_i
-    # params[:engine_size] = params[:engine_size].to_i
-    # params[:year] = params[:year].to_i
-    params.require(:car).permit(:category, :brand, :model, :year, :color, :number_of_doors, :number_of_seats, :engine_size, photos:[])
+    params.require(:car).permit(:category, :brand, :model, :year, :color, :number_of_doors, :number_of_seats,
+                                :engine_size, :price, :address, photos: [])
   end
-
 end

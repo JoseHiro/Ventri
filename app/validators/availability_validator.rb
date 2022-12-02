@@ -1,6 +1,6 @@
 class AvailabilityValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    rentals = Rental.all
+    rentals = Rental.where.not(id: record.id)
     date_ranges = rentals.map { |rental| rental.start_date..rental.end_date }
 
     date_ranges.each do |range|
