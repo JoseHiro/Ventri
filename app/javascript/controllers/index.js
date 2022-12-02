@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CoverageFormController from "./coverage_form_controller"
+application.register("coverage-form", CoverageFormController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

@@ -1,9 +1,11 @@
-<div class="container marketing">
+
+<div class="container marketing mb-5">
   <div class="row d-flex justify-content-center">
-    <div class="col-10 mt-5">
+    <div class="col-10 mt-5" style="width: 700px; border: solid 2px  #e6e6e6">
     <h2>Log in</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
     <div class="form-inputs">
     <%= f.input :email,
                 required: false,
@@ -16,13 +18,13 @@
     </div>
 
     <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+      <%= f.button :submit, "Log in"%>
     </div>
-    
+
     <% end %>
+    <hr>
 
-    <%= render "devise/shared/links" %>
-
+    <%= link_to "Sign up", new_user_registration_path, class:"mb-3 btn btn-outline-success"  %>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <h1>Rent a new car</h1>
 <h3>You will rent the car <%= @car.model %></h3>
 <%= simple_form_for([@car, @rental]) do |f| %>
-  <%= f.input :start_date, as: :date%>
+  <%= f.input :start_date, as: :date, html5: true%>
   <%= f.input :end_date %>
   <%= f.submit %>
 <% end %>
