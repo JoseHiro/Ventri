@@ -55,6 +55,7 @@ class CarsController < ApplicationController
     # params[:number_of_seats] = params[:number_of_seats].to_i
     # params[:engine_size] = params[:engine_size].to_i
     # params[:year] = params[:year].to_i
-    params.require(:car).permit(:category, :brand, :model, :year, :color, :number_of_doors, :number_of_seats, :engine_size)
+    params.require(:car).permit(:category, :brand, :model, :year, :color, :number_of_doors, :number_of_seats, :engine_size, photos:[])
   end
+
 end
