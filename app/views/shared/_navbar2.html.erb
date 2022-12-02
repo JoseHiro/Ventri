@@ -29,18 +29,20 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form> %>
 
-              <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
+              <%= form_with url: cars_path, method: :get, class: "d-flex ms-4" do %>
               <%= text_field_tag :query,
                 params[:query],
                 class: "form-control",
-                placeholder: "Find a car"
+                placeholder: "Find a car",
+                style:"border-radius: 25px 0px 0px 25px; width: 20vw;"
               %>
               <%= text_field_tag :address,
                 params[:address],
                 class: "form-control",
-                placeholder: "Find a car by address"
+                placeholder: "Find a car by address",
+                style: "border-right: none; margin-left:1px; width: 20vw;"
               %>
-              <%= submit_tag "Search", class: "btn btn-primary" %>
+              <%= submit_tag "Search", class: "btn btn-success", style: "border-radius: 0 25px 25px 0; border-left:none; position: relative; right: 1px;" %>
               <% end %>
      </div>
 </nav>
