@@ -64,18 +64,28 @@
 </div>
 
 <% if current_user && current_user != @car.owner %>
-  <div class="m-4">
-    <div>
-      <h3>Please fill in the form below</h3>
-    </div>
-    <div>
-      <div id="new_rental">
-        <%= simple_form_for([@car, @rental]) do |f| %>
-        <%= f.input :start_date, as: :date %>
-        <%= f.input :end_date %>
-        <%= f.submit %>
-        <%end%>
-      </div>
+  <div class="container" data-controller="coverage-form">
+    <h2 style="text-align:center;"><strong>Rent this car!</strong></h2>
+    <div class="m-4 d-flex flex-row justify-content-between">
+        <div id="new_rental" class="card p-4" style="border-radius:10px; width: 40vw;">
+          <h4>Select the days you will like to rent this car</h4>
+          <%= simple_form_for([@car, @rental], data: { coverage_form_target: "form" }) do |f| %>
+          <%= f.input :start_date, as: :date, html5:true %>
+          <%= f.input :end_date, html5:true %>
+          <%= f.submit 'Request rental', class:"btn btn-dark",  data: { action: "click->coverage-form#alert" }  %>
+        </div>
+        <div id="new_rental" class="card p-4" style="border-radius:10px; width: 40vw;" data-coverage-form-target="finance">
+          <h4 class="mb-4">Select your coverage and excess level</h4>
+          <div class="d-flex flex-row">
+            <p style="text-align:center; font-size: 23px; margin: 0 auto; font-weight: 400; color: white" class="badge bg-dark badge-pill badge-success mt-1 mb-1">$<span data-coverage-form-target="coverageContainer">25</span>£ Coverage</p>
+            <p style="text-align:center; font-size: 23px; margin: 0 auto; font-weight: 400; color: white " class="badge bg-dark badge-pill badge-success mt-1 mb-1">$<span data-coverage-form-target="excessContainer">1000</span>£ Excess</p>
+          </div>
+          <div class="excess-input">
+          <%= f.input :excess, as: :range, input_html: {min:"0", max:"50",data:{action: "change->coverage-form#update", coverage_form_target: "coverage"}}, class:"form-range", label:false%>
+          </div>
+          <p class="mt-2">Increase the coverage to decrease the excess charged to your credit card. <strong>The coverage should be payed daily.</strong>  </p>
+        </div>
+          <%end%>
     </div>
   </div>
 <%end%>
