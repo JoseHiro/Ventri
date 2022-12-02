@@ -8,6 +8,12 @@ class Car < ApplicationRecord
     getting_models
   end
 
+  def unavailable_dates
+    rentals.pluck(:start_date, :end_date).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
+
   private
 
   def self.getting_models

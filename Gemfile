@@ -20,6 +20,8 @@ gem "pg", "~> 1.1"
 
 gem "faker"
 
+gem 'flatpickr'
+
 gem "geocoder"
 
 # Use the Puma web server [https://github.com/puma/puma]

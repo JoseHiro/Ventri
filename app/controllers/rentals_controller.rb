@@ -41,7 +41,7 @@ class RentalsController < ApplicationController
     if @rental.save
       redirect_to show_booked_rental_path(@rental)
     else
-      render :new, status: :unprocessable_entity
+      render "cars/show", status: :unprocessable_entity
     end
   end
 
