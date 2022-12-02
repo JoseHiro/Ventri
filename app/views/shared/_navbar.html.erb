@@ -26,8 +26,7 @@
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My page", users_show_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My car", car_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Cars index (just for now)", cars_path, class: "dropdown-item" %>
+              <%= link_to "Cars in the location", cars_path, class: "dropdown-item" %>
               <%= link_to "Edit user information", edit_user_registration_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
