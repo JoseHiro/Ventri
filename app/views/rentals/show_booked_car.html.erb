@@ -23,21 +23,23 @@
         <p>The owner of this car has not accept this rental. This procces takes in average 1 hour.</p>
         <% else %>
         <p>Your rental is approved!</p>
-        <% if @rental.start_date < Date.new %>
+        <% if @rental.start_date <= Date.new %>
         <a href="" class="btn btn-dark">Start pick up proccess</a>
-        <% else %>
+        <% elsif !@rental.user_started_condition %>
         <a href="" class="btn btn-dark disabled">Start pick-up proccess on <%= @rental.start_date %></a>
+        <% elsif @rental.user_started_condition && @rental.end_date >= Date.new  %>
+        <%= link_to "Start the return proccess on #{@rental.end_date}", return_rental_path(@rental), class: "btn btn-dark disabled"  %>
         <% end %>
         <% end %>
       </div>
        <div class="d-flex flex-row justify-content-between">
         <div class="d-flex flex-column p-2 w-50">
-        <p><span><i style="font-size:24px;" class="fa-solid fa-car-side"></i> </span> <%= @rental.car.brand %>, <%= @rental.car.model %></p>
-        <p><span><i style="font-size:24px;" class="fa-solid fa-door-open"></i> </span><%= @rental.car.number_of_doors %></p>
+        <p><span><i class="fa-solid fa-car mt-3"></i></span> <%= @rental.car.brand %>, <%= @rental.car.model %></p>
+        <p><span><i class="fa-solid fa-door-open"></i> </span><%= @rental.car.number_of_doors %></p>
         </div>
         <div class="d-flex flex-column p-3">
-        <p><span><i style="font-size:24px;" class="fa-solid fa-bolt"></i> </span><%= @rental.car.engine_size %></p>
-        <p><span><i style="font-size:24px;" class="fa-solid fa-couch"></i> </span><%= @rental.car.engine_size %></p>
+        <p><span><i class="fa-solid fa-bolt"></i> </span><%= @rental.car.engine_size %></p>
+        <p><span><i class="fa-solid fa-couch"></i> </span><%= @rental.car.engine_size %></p>
         </div>
       </div>
        </div>

@@ -14,7 +14,7 @@
       <div class="d-flex flex-row align-items-center justify-content-between">
         <h2>Rental details</h2>
         <% if !@rental.owner_acceptance %>
-        <span class="badge bg-danger badge-pill badge-success w-25">Unapproved yet by you</span>
+        <span class="badge bg-danger badge-pill badge-success w-25">Not approved yet by you</span>
         <% else %>
         <span class="badge bg-success badge-pill badge-success w-25">Approved by you</span>
         <% end %>
@@ -63,7 +63,7 @@
     <div>
       <% if @rental.user_started_condition && @rental.owner_started_condition && !@rental.user_end_condition && !@rental.owner_end_condition%>
         <p>Rental Status: <span class="badge bg-success badge-pill badge-success">Delivered to Host</span></p>
-        <p>Your delivery agreement: <span class="badge bg-success badge-pill badge-success">Accepted</span></p>
+        <%= link_to "Start car return proccess on #{@rental.end_date}", owner_receive_rental_path(@rental), class: "btn btn-dark disabled"  %>
       <% elsif !@rental.user_started_condition && !@rental.owner_started_condition && !@rental.user_end_condition && !@rental.owner_end_condition  %>
         <p>Rental Status: <span class="badge bg-danger badge-pill badge-success">Not delivered to host</span></p>
         <p>Delivery agreement: <span class="badge bg-danger badge-pill badge-success">Not accepted</span></p>
@@ -72,6 +72,8 @@
         <% else %>
         <%= link_to "Start delivery proccess on #{@rental.start_date}", owner_deliver_rental_path(@rental), class: "btn btn-dark disabled"  %>
         <% end %>
+      <% elsif !@rental.user_started_condition && @rental.owner_started_condition && !@rental.user_end_condition && !@rental.owner_end_condition %>
+        <p>Rental Status: <span class="badge bg-success badge-pill badge-success">Approved by you but not by the host</span></p>
       <% end %>
     </div>
     </div>

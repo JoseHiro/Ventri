@@ -1,5 +1,67 @@
 <div class="container d-flex align-items-center flex-column" style="margin-top:50px;">
   <div class="p-5" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 70vw; border-radius: 15px;">
-    <h1><strong>Delivery car process</strong></h1>
+    <h1><i class="fa-solid fa-handshake"></i> <strong>Delivery car process</strong></h1>
+    <br>
+    <h4>Please follow the following checklist to deliver the car to <%= @rental.user.first_name %> <%= @rental.user.last_name %> </h4>
+    <%= simple_form_for(@rental) do |f| %>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Start the Car and ensure everything is in good condition.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Turn on the Air Conditioning or Heat and ensure it works.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Check the Gas Gauge.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Pop the Trunk
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Test the Entertainment and Navigation Systems
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">
+          Start the Car and ensure everything is in good condition.
+        </label>
+      </div>
+      <br>
+      <h4>Follow the following diagram to inspect the car</h4>
+      <br>
+      <div class="d-flex justify-content-center mb-3">
+        <img src="https://cartransportservices.com.au/wp-content/uploads/2019/08/inspection-report.jpg">
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" required>
+        <label class="form-check-label" for="flexCheckDisabled">
+          Inspect the Exterior
+        </label>
+      </div>
+      <br>
+      <h4>Review the rental data</h4>
+      <p><strong>Car host:</strong> <%= @rental.user.first_name%> <%= @rental.user.last_name %> </p>
+      <p><strong>Location:</strong> <%= @rental.car.address%></p>
+      <p><strong>Rented Car:</strong> <%= @rental.car.brand%>, <%= @rental.car.model%></p>
+      <%= f.input :start_milage, required: true, label: "Start car mileage" %>
+      <p style="font-size:12px; margin-top:-15px">*Will be validated by the car host <%= @rental.user.first_name%> <%= @rental.user.last_name %> </p>
+      <hr>
+      <%= f.input :owner_started_condition, label: "I, #{@rental.car.owner.first_name} #{@rental.car.owner.last_name}, accept the conditions and ensured the car condition.", required: true %>
+      <%= f.submit "Deliver car", class: "btn btn-dark" %>
+    <% end %>
   </div>
 </div>

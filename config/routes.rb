@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     resources :rentals, only: [:new, :create]
   end
 
-  get "my_bookings", to: "rentals#booked_cars"
+  get "my_bookings", to: "rentals#booked_cars", as: "my_bookings"
   get "my_bookings/:id", to: "rentals#show_booked_car", as: "show_booked_rental"
   get "my_bookings/:id/receive", to: "rentals#rental_receive", as: "receive_rental"
   get "my_bookings/:id/return", to: "rentals#rental_return", as: "return_rental"
   get "my_rented_cars/:id/deliver", to: "rentals#owner_rental_deliver", as: "owner_deliver_rental"
   get "my_rented_cars/:id/receive", to: "rentals#owner_rental_receive", as: "owner_receive_rental"
-  get "my_rented_cars", to: "rentals#my_rented_cars"
+  get "my_rented_cars", to: "rentals#my_rented_cars", as: "my_rented_cars"
   get "my_rented_cars/:id", to: "rentals#show_owner_rental", as: "show_owner_rental"
   patch "rental/:id/owner_acceptance", to: "rentals#update_owner_acceptance", as: "accept_rental"
 
