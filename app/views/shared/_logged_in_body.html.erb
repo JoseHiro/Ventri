@@ -10,18 +10,10 @@
         <h5 class="mt-3 ms-2">Hello <%= current_user.first_name %></h5>
       </div>
 
-      <div class="" style="margin-top: 50px; border-radius: 8px; margin-left: 50px; height: 200px;; width: 600px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-        <div class="mt-2 ms-2">
-          <h4 style="font-weight:bold">Search car in a location</h4>
-          <form action="">
-            <input type="text">
-            <input type="submit" class="btn btn-success">
-          </form>
-          <hr>
-          <div class="d-flex">
-          <h4 style="font-weight:bold">Lent your car!</h4>
-          <%= link_to "Publish your car", new_car_path, style:"width:400px", class:"ms-4 btn btn-dark" %>
-          </div>
+      <div class="" style="margin-top: 70px; border-radius: 8px; margin-left: 50px; height: 150px;; width: 600px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+        <div class="mt-2 ms-3">
+          <h4 class="" style="font-weight:bold"><i class="fa-solid fa-car-side"></i> Lent your car!</h4>
+          <%= link_to "Publish your car", new_car_path, style:"width:500px", class:"mt-4 ms-4 btn btn-dark" %>
         </div>
       </div>
     </div>
@@ -46,11 +38,19 @@
                       <% end %>
                       <%= "#{user.first_name} has sent you a request for model #{car.model}" %>
                     </div>
-                    <%= link_to "View", show_booked_rental_path(rental), class:"btn btn-light", style:"padding-bottom:30px; height:30px"%>
+                    <%= link_to "View", my_rented_cars_path(rental), class:"btn btn-light", style:"padding-bottom:30px; height:30px"%>
                   </div>
+                <% end %>
+                <% if rental.owner_acceptance == true %>
+
                 <% end %>
               <% end %>
             <% end %>
+          <% end %>
+
+
+          <% if  %>
+
           <% end %>
       </div>
     </div>
@@ -67,7 +67,8 @@
 
            <div class="d-flex justify-content-between">
               <div class="d-flex">
-                <img style= "width:100px; height: 100px" class="mt-2 mb-2" src="https://i.pinimg.com/originals/1f/47/4a/1f474a542a079e29a46724e53612ac67.jpg" alt="">
+                <% photos = car.photos %>
+                <%= cl_image_tag photos[0].key, width: 100, height: 100, crop: :fill,  class:"mt-2 mb-2"%>
                 <div class="ps-3">
                   <p>Model: <%= car.model %></p>
                   <% if rental.owner_acceptance == true %>
@@ -103,11 +104,13 @@
             <% lenting_car.each do |car| %>
             <div class="d-flex justify-content-between">
               <div class="d-flex">
-                <img style= "width:100px; height: 100px" class="mt-2 mb-2" src="https://i.pinimg.com/originals/1f/47/4a/1f474a542a079e29a46724e53612ac67.jpg" alt="">
+                 <% photos = car.photos %>
+                <%= cl_image_tag photos[0].key, width: 100, height: 100, crop: :fill%>
                 <div class="ps-3">
                   <p>Brand: <%= car.brand %></p>
                   <p>Category: <%= car.category%></p>
                   <p>Model: <%= car.model %></p>
+                  <hr>
                 </div>
               </div>
               <%= link_to "Show", car_path(car), class:"btn btn-light", style:"height: 40px;"%>
@@ -118,16 +121,16 @@
     </div>
   </div>
 
-  <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 440px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
-    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i> Hot cars</h3>
+  <div class="" style="padding-bottom: 30px;border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 440px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
+    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i> New cars</h3>
     <% @cars.each do |car|%>
-    <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 420px; border-radius:10px;">
-      <img class="card-img-top" src="https://blog.dupontregistry.com/wp-content/uploads/2021/02/koenigseggjesko-scaled.jpg" alt="Card image cap" style="border-radius:10px; height:200px;">
-      <div class="card-body d-flex justify-content-between">
+    <div class="card mb-3" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 350px; border-radius:10px; margin: 0 auto">
+      <% images = car.photos %>
+      <%= cl_image_tag images[0].key, height:200, width: 348, crop: :fill, style:"border-radius:10px;"%>
+      <div style="height: 100px"class="card-body d-flex justify-content-between">
         <div class="">
-          <p class="card-title"><%= car.category %></p>
-          <p class="card-text"><%= car.brand %></p>
-          <p class="card-text"><%= car.model  %></p>
+          <p class="card-text">Brand: <%= car.brand %></p>
+          <p class="card-text">Model: <%= car.model  %></p>
         </div>
         <%= link_to "Show", car_path(car), class:"btn btn-light", style:"height: 40px;"%>
       </div>
