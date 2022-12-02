@@ -11,7 +11,8 @@
 <%@cars.each_with_index do |car|%>
   <div class="d-flex ">
       <div class="card-trip m-3" style="border-radius: 15px; width: 500px">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+        <% photos = car.photos %>
+        <%= cl_image_tag photos[0].key, width: 500, height: 300, crop: :fill, style:"border-radius: 15px 0px 0px 15px" %>
         <div class="card-trip-infos">
           <div class="d-flex justify-content-between" style="width: 100%">
             <div>

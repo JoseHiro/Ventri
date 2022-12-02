@@ -8,7 +8,8 @@
     <div class="border card p-3">
       <h1 class="mt-3">Your <strong><%= @rental.car.brand %>, <%= @rental.car.model %></strong> car information</h1>
       <br>
-      <img class="img-car" src="https://www.ford.mx/content/dam/Ford/website-assets/latam/mx/open-graph/2021/nameplate/escape-hibrida/ford-escape-hibrida-2021-camioneta-suv-especificaciones-capacidad-autonomia-poder.jpg" alt="">
+      <% photos = @rental.car.photos %>
+      <%= cl_image_tag photos[0].key, width: 550, height: 300, crop: :fill, style:"border-radius: 15px 0px 0px 15px", class:"img-car", class:"img-car" %>
       <div class="d-flex flex-row justify-content-evenly">
       <div class="d-flex flex-column w-50">
       <div class="d-flex flex-row  align-items-center">
@@ -22,11 +23,11 @@
         <% if !@rental.owner_acceptance %>
         <p>The owner of this car has not accept this rental. This procces takes in average 1 hour.</p>
         <% else %>
-        <p>Your rental is approve!</p>
+        <p>Your rental is approved!</p>
         <% if @rental.start_date < Date.new %>
         <a href="" class="btn btn-dark">Start pick up proccess</a>
         <% else %>
-        <a href="" class="btn btn-dark disabled">Start pick up proccess on <%= @rental.start_date %></a>
+        <a href="" class="btn btn-dark disabled">Start pick-up proccess on <%= @rental.start_date %></a>
         <% end %>
         <% end %>
       </div>
@@ -57,10 +58,10 @@
       <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>
       <p class="card-text"><i class="fa-solid fa-tag"></i> <%= @rental.car.price %>€ per day</p>
       <h5>Your financial choice</h5>
-      <p class="card-text"><strong>Coverage:</strong> <%= @rental.coverage %>€</p>
-      <p class="card-text"><strong>Excess:</strong><%= @rental.excess %>€</p>
-      <p class="card-text" style="font-size:17px">Total for <strong><%= @days %> day(s): </strong><%=@price%>€ + <%= @rental.coverage %>€ :</p>
-      <span style="font-size:18px"class="badge bg-dark badge-pill badge-success "> <%=@price + @rental.coverage %>€</span>
+      <p class="card-text"><strong>Coverage:</strong> <%= @rental.coverage %>€ for <strong><%= @days %> day(s)</strong> = <%= (@rental.coverage * @days.to_i) %>€</p>
+      <p class="card-text"><strong>Excess:</strong> <%= @rental.excess %>€</p>
+      <p class="card-text" style="font-size:17px">Total for <strong><%= @days %> day(s): </strong><%=@price%>€ + <%= (@rental.coverage * @days.to_i) %>€ :</p>
+      <span style="font-size:18px"class="badge bg-dark badge-pill badge-success "> <%=@price + @rental.coverage * @days.to_i %>€</span>
     </div>
     </div>
   </div>

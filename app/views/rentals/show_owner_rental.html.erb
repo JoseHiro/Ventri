@@ -8,7 +8,8 @@
     <div class="border card p-3">
       <h1 class="mt-3">Your <strong><%= @rental.car.brand %>, <%= @rental.car.model %></strong> rental car information</h1>
       <br>
-      <img class="img-car" src="https://www.ford.mx/content/dam/Ford/website-assets/latam/mx/open-graph/2021/nameplate/escape-hibrida/ford-escape-hibrida-2021-camioneta-suv-especificaciones-capacidad-autonomia-poder.jpg" alt="">
+      <% photos = @rental.car.photos %>
+      <%= cl_image_tag photos[0].key, width: 550, height: 300, crop: :fill, style:"border-radius: 15px 0px 0px 15px", class:"img-car" %>
       <div class="d-flex flex-column">
       <div class="d-flex flex-column">
       <div class="d-flex flex-row align-items-center justify-content-between">
@@ -16,22 +17,16 @@
         <% if !@rental.owner_acceptance %>
         <span class="badge bg-danger badge-pill badge-success w-25">Unapproved yet by you</span>
         <% else %>
-        <span class="badge bg-success badge-pill badge-success w-25">Approved</span>
+        <span class="badge bg-success badge-pill badge-success w-25">Approved by you</span>
         <% end %>
       </div>
-        <% if !@rental.owner_acceptance %>
-        <p>Please review the rental details, and procced with the approval.</p>
-        <% else %>
-        <p>Your rental is approve!</p>
-        <% if @rental.start_date < Date.new %>
-        <a href="" class="btn btn-dark">Start pick up proccess</a>
-        <% else %>
-        <a href="" class="btn btn-dark disabled">Start pick up proccess on <%= @rental.start_date %></a>
-        <% end %>
-        <% end %>
       </div>
        <div>
+       <% if !@rental.owner_acceptance %>
         <h4>Rental request person </h4>
+      <% else %>
+        <h4>Host</h4>
+       <% end %>
         <div class="d-flex flex-column p-3">
           <div>
             <p class="card-text"><span>
@@ -51,6 +46,12 @@
             <div>
               <p class="card-text"><span><i class="fa-solid fa-money-bill"></i></span> <%= @rental.car.price %>€ per day <p style="font-size:12px; margin-top:-15px">*This price was set by you when posting your car. You <strong>will not</strong> be able to change this price if you accept this rental request until <%= @rental.end_date %> when the car is returned.</p></p>
               <p class="card-text"><span><i class="fa-solid fa-sun"></i></span> <%= @days %> days<p style="font-size:12px; margin-top:-15px">*Each day corresponds to <strong>24hrs</strong>; It starts to count at the moment you deliver the car.</p></p>
+              <p class="card-text"><span><i class="fa-solid fa-dollar-sign"></i></span> <%= @rental.total_cost %>€ Total<p style="font-size:12px; margin-top:-15px">*<%= @rental.user.first_name %> <%= @rental.user.last_name %> decided to book the car with a financial setting in which the total amount
+              that will be blocked on its credit card is <%= @rental.excess %>€ from your approval until <strong><%= @rental.end_date %></strong> when the car is returned.</p></p>
+              <p></p>
+              <% if !@rental.owner_acceptance %>
+                <%= link_to "Accept rental request", accept_rental_path(@rental, rental:{ owner_acceptance: true} ), data: {turbo_method: :patch}, class: "btn btn-dark"  %>
+              <% end %>
             </div>
           </div>
        </div>
@@ -59,18 +60,21 @@
   </div>
   <div class="right-content">
     <div class="border card p-3">
-    <h3><strong>Finance details</strong></h3>
-    <div class="d-flex flex-column">
-    <% if @rental.car.owner.avatar.attached? %>
-      <%= cl_image_tag @rental.car.owner.avatar.key, height: 200, width: 200, class:"p-3 img-circle" %>
-    <% else %>
-    <%= image_tag "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png", height: 200, width: 200, class:"p-3 img-circle"%>
-    <% end %>
-      <h5 style="text-align:center;"><strong><%= @rental.car.owner.first_name %> <%= @rental.car.owner.last_name %></strong></h5>
-      <p  class="card-text" ><span><i class="fa-solid fa-location-dot"></i> </span><%= @rental.car.address %></p>
-      <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>
-      <p class="card-text"><i class="fa-solid fa-tag"></i> <%= @rental.car.price %>€ per day</p>
-      <p class="card-text" style="font-size:20px"><span style="margin:0 auto"class="badge bg-dark badge-pill badge-success">Total for <%= @days %> day(s): <%=@price%>€</span></p>
+    <h3><strong>Rental track</strong></h3>
+    <div>
+      <% if @rental.user_started_condition && @rental.owner_started_condition && !@rental.user_end_condition && !@rental.owner_end_condition%>
+        <p>Rental Status: <span class="badge bg-success badge-pill badge-success">Delivered to Host</span></p>
+        <p>Your delivery agreement: <span class="badge bg-success badge-pill badge-success">Accepted</span></p>
+      <% elsif !@rental.user_started_condition && !@rental.owner_started_condition && !@rental.user_end_condition && !@rental.owner_end_condition  %>
+        <p>Rental Status: <span class="badge bg-danger badge-pill badge-success">Not delivered to host</span></p>
+        <p>Delivery agreement: <span class="badge bg-danger badge-pill badge-success">Not accepted</span></p>
+        <% if @rental.start_date <= Date.new %>
+        <%= link_to "Start delivery proccess", owner_deliver_rental_path(@rental), class: "btn btn-dark"  %>
+        <% else %>
+        <%= link_to "Start delivery proccess on #{@rental.start_date}", owner_deliver_rental_path(@rental), class: "btn btn-dark disabled"  %>
+        <% end %>
+      <% end %>
+    </div>
     </div>
     </div>
   </div>
