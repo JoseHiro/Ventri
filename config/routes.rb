@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "my_rented_cars/:id/receive", to: "rentals#owner_rental_receive", as: "owner_receive_rental"
   get "my_rented_cars", to: "rentals#my_rented_cars"
   get "my_rented_cars/:id", to: "rentals#show_owner_rental", as: "show_owner_rental"
+  patch "rental/:id/owner_acceptance", to: "rentals#update_owner_acceptance", as: "accept_rental"
 
   resources :rentals do
 

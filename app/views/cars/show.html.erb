@@ -31,7 +31,7 @@
       <p><i class="fa-solid fa-chair"></i></i><span> </span>Number of seats: <%=@car.number_of_seats%></p>
       <p><i class="fa-solid fa-door-open"></i><span> </span>Number of doors: <%=@car.number_of_doors%></p>
       <p><i class="fa-solid fa-bolt"></i><span> </span>Engine Size (L): <%=@car.engine_size%></p>
-      <h4><i class="fa-solid fa-dollar-sign"></i><span> </span>Price/day: £99.99</h4>
+      <h4><i class="fa-solid fa-dollar-sign"></i><span> </span>Price/day: £<%=@car.price  %></h4>
       <% if current_user && current_user != @car.owner %>
       <div class="d-flex justify-content-center">
         <a href="#new_rental" class="btn btn-dark mt-3 me-2">Rent it!</a>

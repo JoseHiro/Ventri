@@ -22,6 +22,8 @@ gem "pg_search"
 
 gem "faker"
 
+gem 'flatpickr'
+
 gem "geocoder"
 
 # Use the Puma web server [https://github.com/puma/puma]

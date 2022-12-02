@@ -38,10 +38,11 @@ class RentalsController < ApplicationController
     @car = Car.find(params[:car_id])
     @rental.car = @car
     @rental.user = current_user
+    @rental.total_cost = ((@rental.end_date - @rental.start_date).to_i * @rental.car.price.to_i)
     if @rental.save
       redirect_to show_booked_rental_path(@rental)
     else
-      render :new, status: :unprocessable_entity
+      render "cars/show", status: :unprocessable_entity
     end
   end
 
@@ -79,6 +80,13 @@ class RentalsController < ApplicationController
     @rental.destroy
   end
 
+  def update_owner_acceptance
+    @rental = Rental.find(params[:id])
+    if @rental.update(owner_approval_params)
+    redirect_to show_owner_rental_path(@rental)
+    end
+  end
+
   private
 
   def owner_rented_cars
@@ -94,5 +102,9 @@ class RentalsController < ApplicationController
     params.require(:rental).permit(:owner_acceptance, :start_milage, :end_milage, :user_started_condition,
                                    :owner_started_condition, :user_end_condition, :owner_end_condition, :start_date,
                                    :end_date)
+  end
+
+  def owner_approval_params
+    params.require(:rental).permit(:owner_acceptance)
   end
 end
