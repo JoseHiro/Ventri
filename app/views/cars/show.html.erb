@@ -1,5 +1,9 @@
-<div class = "d-flex m-4" style="width: 700px">
-  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered ms-4 me-2" style="width:70px; height:70px;" />
+<div class = "d-flex m-4 align-items-center" style="width: 700px">
+<% if @car.owner.avatar.attached? %>
+<%= cl_image_tag @car.owner.avatar.key, height: 85, width: 85, class:"ms-5 me-3" ,style: "padding: 1px; border-radius: 50px; box-shadow: 0 0 10px rgba(0,0,0,0.2); border: white 2px solid; ;"%>
+<% else %>
+
+<% end %>
   <h1><%=@car.owner.first_name%>'s <%=@car.brand%> <%=@car.model%></h1>
 </div>
 
@@ -31,7 +35,7 @@
       <p><i class="fa-solid fa-chair"></i></i><span> </span>Number of seats: <%=@car.number_of_seats%></p>
       <p><i class="fa-solid fa-door-open"></i><span> </span>Number of doors: <%=@car.number_of_doors%></p>
       <p><i class="fa-solid fa-bolt"></i><span> </span>Engine Size (L): <%=@car.engine_size%></p>
-      <h4><i class="fa-solid fa-dollar-sign"></i><span> </span>Price/day: £99.99</h4>
+      <h4><i class="fa-solid fa-tags"></i></i><span> </span>£<%=@car.price.round%></h4>
       <% if current_user && current_user != @car.owner %>
       <div class="d-flex justify-content-center">
         <a href="#new_rental" class="btn btn-dark mt-3 me-2">Rent it!</a>
