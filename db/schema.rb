@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_181906) do
     t.boolean "picked", default: false
     t.boolean "returned", default: false
     t.float "total_cost"
-    t.float "excess"
-    t.float "coverage", default: 2000.0
+    t.float "excess", default: 1000.0
+    t.integer "coverage", default: 25
     t.index ["car_id"], name: "index_rentals_on_car_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
   end

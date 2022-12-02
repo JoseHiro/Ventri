@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="coverage-form"
 export default class extends Controller {
-  static targets = ["coverage", "coverageContainer", "excessContainer", "finance", "form"]
+  static targets = ["coverage", "coverageContainer", "excessContainer", "finance", "form", "message", "excessValue"]
   connect() {
     let active = false
   }
@@ -10,16 +10,23 @@ export default class extends Controller {
   update(){
     this.coverageContainerTarget.innerText = Math.abs(parseInt(this.coverageTarget.value) - 50)
     this.excessContainerTarget.innerText = (this.coverageTarget.value * 1000) / 25
+    this.excessValueTarget.value = Math.abs(parseInt(this.coverageTarget.value) - 50)
     this.active = true
+    this.financeTarget.classList.remove("border-danger")
+    this.financeTarget.classList.add("border-success")
+    this.messageTarget.style.color = "green"
+    this.messageTarget.innerText = "Great!"
   }
 
   alert(event){
-    event.preventDefault();
     if (this.active){
-      this.financeTarget.style.border="red"
-
+      this.financeTarget.classList.add("border-success")
     }else {
-      this.coverageContainerTarget.style.color="red"
+      event.preventDefault();
+      this.financeTarget.classList.add("border-danger")
+      this.messageTarget.classList.remove("d-none")
+      this.messageTarget.innerText = "Make sure you select your financing option!"
+      this.messageTarget.style.color = "red"
     }
   }
 }
