@@ -12,7 +12,7 @@
 
       <div class="" style="margin-top: 70px; border-radius: 8px; margin-left: 50px; height: 150px;; width: 600px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
         <div class="mt-2 ms-3">
-          <h4 class="" style="font-weight:bold"><i class="fa-solid fa-car-side"></i> Lent your car!</h4>
+          <h4 class="" style="font-weight:bold"><i class="fa-solid fa-car-side"></i> Rent out your car!</h4>
           <%= link_to "Publish your car", new_car_path, style:"width:500px", class:"mt-4 ms-4 btn btn-dark" %>
         </div>
       </div>
@@ -96,7 +96,7 @@
 
      <div class="mt-4" style=" padding-bottom: 30px;border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
        <div class="container">
-        <h4 style="font-weight:bold; padding-top:20px"><i class="fa-solid fa-car"></i> Lenting car</h4>
+        <h4 style="font-weight:bold; padding-top:20px"><i class="fa-solid fa-car"></i> My posted cars</h4>
         <hr>
           <% if current_user.cars != [] %>
             <% lenting_car = current_user.cars %>
