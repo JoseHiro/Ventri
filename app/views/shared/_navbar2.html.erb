@@ -24,9 +24,23 @@
                 </ul>
               </div>
             </ul>
-              <form class="ms-5 form-inline d-flex">
+              <%# <form class="ms-5 form-inline d-flex">
                 <input class="form-control mr-sm-2" style="width: 300px" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
+              </form> %>
+
+              <%= form_with url: cars_path, method: :get, class: "d-flex" do %>
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Find a car"
+              %>
+              <%= text_field_tag :address,
+                params[:address],
+                class: "form-control",
+                placeholder: "Find a car by address"
+              %>
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+              <% end %>
      </div>
 </nav>
