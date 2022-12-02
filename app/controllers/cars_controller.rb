@@ -1,14 +1,15 @@
 class CarsController < ApplicationController
   def index
-    if params[:query].present?
-      unless Car.near(params[:query], 1).nil?
-        @cars = Car.near(params[:query], 1)
-      else
-        @cars = Car.search_by_car(params[:query])
-      end
-    else
-      @cars = Car.all
-    end
+    # if params[:query].present?
+    #   unless Car.near(params[:query], 1).nil?
+    #     @cars = Car.near(params[:query], 1)
+    #   else
+    #     @cars = Car.search_by_car(params[:query])
+    #   end
+    # else
+    #   @cars = Car.all
+    # end
+    @cars= Car.all
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
