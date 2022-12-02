@@ -57,7 +57,7 @@
 
     <div class="mt-4" style="border-radius: 8px; padding-bottom:30px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
       <div class="container">
-        <h3 style="font-weight:bold; padding-top: 20px;">Your bookings</h3>
+        <h4 style="font-weight:bold; padding-top: 20px;"><i class="fa-solid fa-phone"></i> Your bookings</h4>
         <hr>
         <%# if user has bookings at the moment %>
         <% if current_user.rentals != [] %>
@@ -95,7 +95,7 @@
 
      <div class="mt-4" style=" padding-bottom: 30px;border-radius: 8px; margin-left: 80px; width: 800px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
        <div class="container">
-        <h3 style="font-weight:bold; padding-top:20px">Lenting car</h3>
+        <h4 style="font-weight:bold; padding-top:20px"><i class="fa-solid fa-car"></i> Lenting car</h4>
         <hr>
           <% if current_user.cars != [] %>
             <% lenting_car = current_user.cars %>
@@ -119,7 +119,7 @@
   </div>
 
   <div class="" style="border-radius: 8px; margin-top: 50px; margin-left: 40px; margin-right:20px; width: 440px; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2); ">
-    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i>Hot cars</h3>
+    <h3 style="font-weight:bold"><i class="ms-3 mt-2 fa-solid fa-fire"></i> Hot cars</h3>
     <% @cars.each do |car|%>
     <div class="card mt-4 ms-2 me-2" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 420px; border-radius:10px;">
       <img class="card-img-top" src="https://blog.dupontregistry.com/wp-content/uploads/2021/02/koenigseggjesko-scaled.jpg" alt="Card image cap" style="border-radius:10px; height:200px;">
