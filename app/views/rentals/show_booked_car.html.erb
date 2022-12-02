@@ -56,8 +56,11 @@
       <p  class="card-text" ><span><i class="fa-solid fa-location-dot"></i> </span><%= @rental.car.address %></p>
       <p class="card-text"><i class="fa-solid fa-calendar-days"></i> <%= @rental.start_date %> to <%= @rental.end_date %></p>
       <p class="card-text"><i class="fa-solid fa-tag"></i> <%= @rental.car.price %>€ per day</p>
-      <p class="card-text" style="font-size:20px"><span style="margin:0 auto"class="badge bg-dark badge-pill badge-success ">Total for <%= @days %> day(s): <%=@price%>€</span></p>
-
+      <h5>Your financial choice</h5>
+      <p class="card-text"><strong>Coverage:</strong> <%= @rental.coverage %>€</p>
+      <p class="card-text"><strong>Excess:</strong><%= @rental.excess %>€</p>
+      <p class="card-text" style="font-size:17px">Total for <strong><%= @days %> day(s): </strong><%=@price%>€ + <%= @rental.coverage %>€ :</p>
+      <span style="font-size:18px"class="badge bg-dark badge-pill badge-success "> <%=@price + @rental.coverage %>€</span>
     </div>
     </div>
   </div>

@@ -4,6 +4,7 @@
     <div class="col-10 mt-5" style="width: 700px; border: solid 2px  #e6e6e6">
     <h2>Log in</h2>
 
+
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
     <div class="form-inputs">
     <%= f.input :email,
