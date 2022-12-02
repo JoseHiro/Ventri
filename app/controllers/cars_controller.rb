@@ -1,6 +1,17 @@
 class CarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
-    @cars = Car.all
+    if params[:query].present?
+      unless params[:address].empty?
+        selection = Car.near(params[:address], 20)
+        @cars = selection.search_by_car(params[:query])
+      else
+        @cars = Car.search_by_car(params[:query])
+      end
+    else
+      @cars = Car.all
+    end
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
